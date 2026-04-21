@@ -10,14 +10,7 @@
 ✅ 可视化报告：Allure 生成详细报告，支持本地查看+Github Pages 远程部署  
 ✅ CI/CD 自动化：Github Actions 实现「代码提交→自动测试→报告部署」全流程  
 ✅ 易用性：一键运行脚本，新手快速上手  
-✅ 智能化(Beta)：集成 OpenAI API，自动生成测试用例和测试数据，提升测试覆盖率和效率(测试版本，由于Swagger报告的不完善，导致生成的测试用例不够准确，后续会优化这一部分功能)
-
- 
-#### 相关仓库
-[InvEntropy后端](https://github.com/Hsyuan54670/InvEntropy-backend.git) |
-[InvEntropy前端](https://github.com/Hsyuan54670/InvEntropy-frontend.git) | [InvEntropy部署](https://github.com/Hsyuan54670/InvEntropy-run.git)
-
-
+✅ 智能化(Beta)：集成 OpenAI API，自动生成测试用例和测试数据，提升测试覆盖率和效率(测试版本，由于Swagger报告的不完善，导致生成的测试用例不够准确，后续会优化这一部分功能
 
 
 ## 效果展示
