@@ -18,7 +18,7 @@ Allure 报告在线查看：[GitHub Pages](https://Hsyuan54670.github.io/yuan-ap
 ![img/img.png](img/img.png)
 
 CI/CD 工作流：
-![img/workflow.png](img/workflow.png)
+(img/workflow.png)
 
 yaml测试用例示例：
 [YAML模板使用说明](docs/YAML%E6%A8%A1%E6%9D%BF%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.md)
