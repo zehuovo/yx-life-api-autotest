@@ -1,14 +1,19 @@
-name: API Test CI/CD
+name: YX-Life API Test CI/CD 
+
 on:
-  push
+  push:
+    branches: [ "main", "master" ] 
+  pull_request:
+    branches: [ "main", "master" ] 
+  workflow_dispatch:               
 
 jobs:
   test:
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # 允许推送分支、创建标签等内容写入操作
-      pages: write     # 增强GitHub Pages相关权限
-      id-token: write  # 兼容新版GitHub Pages认证
+      contents: write  
+      pages: write     
+      id-token: write  
 
     steps:
       - name: 拉取仓库代码
@@ -24,6 +29,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+          # 确保 requirements.txt 里加上了 pymysql 和 redis 这两个库！
 
       - name: 安装 Allure
         run: |
@@ -33,20 +39,26 @@ jobs:
           sudo ln -s /opt/allure/bin/allure /usr/local/bin/allure
           allure --version
 
-      - name: 生成.env配置文件
+      - name: 生成.env配置文件 (注入后端中间件配置)
         run: |
           echo "SERVER_URL=${{ secrets.SERVER_URL }}" >> .env
-          echo "PUBLIC_KEY=${{ secrets.PUBLIC_KEY }}" >> .env
+          # 下面这些是新增的！用于 Python 脚本直连数据库进行深度断言
+          echo "MYSQL_HOST=${{ secrets.MYSQL_HOST }}" >> .env
+          echo "MYSQL_PORT=${{ secrets.MYSQL_PORT }}" >> .env
+          echo "MYSQL_USER=${{ secrets.MYSQL_USER }}" >> .env
+          echo "MYSQL_PWD=${{ secrets.MYSQL_PWD }}" >> .env
+          echo "REDIS_HOST=${{ secrets.REDIS_HOST }}" >> .env
+          echo "REDIS_PORT=${{ secrets.REDIS_PORT }}" >> .env
+          echo "REDIS_PWD=${{ secrets.REDIS_PWD }}" >> .env
 
-      - name: 执行启动程序
+      - name: 执行悦享生活核心链路自动化测试
         run: |
           python3 start.py
 
-      - name: 部署报告到 Github Pages
+      - name: 部署 Allure 测试报告到 Github Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: report
           publish_branch: gh-pages
           force_orphan: true
-
