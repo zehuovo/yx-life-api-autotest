@@ -2,6 +2,7 @@ import pytest
 import requests
 import logging
 from utils.data_utils import clear_extract_yaml
+from common.config import SERVER_URL  # 引入全局的服务器地址
 
 # 配置日志记录器
 logger = logging.getLogger("Hsyuan")
@@ -9,25 +10,45 @@ logger = logging.getLogger("Hsyuan")
 @pytest.fixture(scope='session', autouse=False)
 def get_yx_session():
     """
-    悦享生活服务平台专属：全局 Session 状态管理
-    说明：采用静态 Token 注入方式模拟已登录状态，绕过动态短信验证码的限制，
-          保证 CI/CD 自动化测试管线在无人工干预下的稳定性。
+    悦享生活专属：全局 Session 状态与动态鉴权管理
+    说明：在自动化管线启动时，自动调用登录接口获取最新 Token，彻底解决 Token 过期导致的 CI/CD 失败问题。
     """
     session = requests.Session()
     
-    # ⚠️【配置说明】
-    # 请先在浏览器中手动登录“悦享生活服务平台”，按 F12 打开开发者工具，
-    # 在 Application -> Session Storage 中找到并复制你的真实 Token 字符串，替换掉下面的值。
-    TEST_TOKEN = "请把这里替换为你浏览器里真实的Token字符串"
+    # 1. 组装登录接口的 URL
+    login_url = f"{SERVER_URL}/user/login"
     
-    # 将 Token 统一设置到 Session 的请求头中
-    # (悦享生活服务平台网关/拦截器统一校验 'authorization' 字段)
-    session.headers.update({
-        "authorization": TEST_TOKEN
-    })
+    # 2. 准备登录参数（黑马点评通常是手机号+验证码/密码）
+    # ⚠️ 注意：测试环境中，为了自动化，建议在后端给这个测试手机号写死一个验证码，或者临时关闭这个手机号的验证码校验
+    payload = {
+        "phone": "13800000000",
+        "code": "123456"  # 根据你后端的实际情况修改
+    }
     
-    # 打印前10位Token字符做脱敏日志输出，方便排查问题
-    logger.info(f"🔑 已成功挂载 [悦享生活服务平台] 测试环境凭证, Token截断: {TEST_TOKEN[:10]}...")
+    logger.info(f"⏳ 正在尝试自动登录悦享生活，测试账号: {payload['phone']}")
+    
+    try:
+        # 3. 发送真实的登录请求
+        resp = requests.post(login_url, json=payload)
+        resp_json = resp.json()
+        
+        # 4. 黑马点评的成功响应结构通常是 {"success": true, "data": "你的token字符串"}
+        if resp_json.get("success") == True or resp_json.get("code") == 200:
+            # 提取新鲜的 Token
+            fresh_token = resp_json.get("data")
+            
+            # 将 Token 统一设置到 Session 的请求头中
+            session.headers.update({
+                "authorization": fresh_token
+            })
+            logger.info(f"🔑 自动登录成功! 已挂载动态 Token: {fresh_token[:10]}...")
+        else:
+            logger.error(f"❌ 自动登录失败，后端返回信息: {resp_json}")
+            raise Exception("自动化登录流程失败，中断测试")
+            
+    except Exception as e:
+        logger.error(f"❌ 登录请求发生网络异常: {e}")
+        raise e
 
     # 将携带了身份认证信息的 session 交付给下游所有的测试用例
     yield session
