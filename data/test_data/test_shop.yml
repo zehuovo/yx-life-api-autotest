@@ -12,12 +12,12 @@ get_shop_type_list:
   steps:
     request:
       method: "GET"
-      url: "/shop-type/list"  # 你的黑马点评真实接口路径
+      url: "/shop-type/list"  
       # headers 不用写，我们在 conftest.py 里已经让系统自动带上 Token 了
       
     expected:
       status_code: 200        # 断言1：HTTP 状态码必须是 200
       response:
-        success: true         # 断言2：黑马点评标准的返回体，必须包含 success: true
+        success: true         # 断言2：悦享生活服务标准的返回体，必须包含 success: true
         # data:               # 断言3：如果你想更严格，可以放开这行，断言 data 下必须包含内容
         #   type: list
