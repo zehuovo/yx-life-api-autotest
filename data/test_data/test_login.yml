@@ -1,0 +1,37 @@
+# 悦享生活 - 登录接口自动化测试
+login_success:
+  allure:
+    title: "手机号验证码登录 - 成功链路"
+    description: "模拟前端提交 LoginFormDTO，包含手机号和验证码"
+    epic: "悦享生活平台"
+    feature: "用户模块"
+    story: "登录功能"
+    tag: ["核心接口", "P0"]
+    pytest_mark: "api"
+
+  steps:
+    request:
+      method: "POST"
+      # 根据你的 @RequestMapping("/user") 和 @PostMapping("/login") 拼接
+      url: "/user/login"
+      json:
+        # 对应你 LoginFormDTO 里的字段名
+        phone: "13312341234"  
+        code: "123456"        
+        # 你的 login 方法用了 @RequestBody，所以这里必须用 json 格式发送
+      params: {}
+      headers:
+        Content-Type: "application/json"
+
+    expected:
+      status_code: 200
+      response:
+        # 你的返回类型是 Result，Result.ok() 通常 success 为 true 或没有 fail 标志
+        # 我们直接校验最重要的 token 是否返回
+        success: true
+        data:
+          required_fields: ["token"]
+
+    extract:
+      # 提取 Token 供后续 shop 接口使用
+      init_token: "$.data"
