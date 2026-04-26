@@ -16,9 +16,17 @@
 
 **测试结果：112 passed / 9 failed — 通过率 92.6%**
 
-![image-20260426164514122](C:\Users\胡泽\AppData\Roaming\Typora\typora-user-images\image-20260426164514122.png)
+| 模块 | 测试数 | 通过数 | 通过率 |
+|------|-------|-------|-------|
+| 用户模块 | 20+ | - | - |
+| 关注模块 | 20+ | - | - |
+| 笔记模块 | 40+ | - | - |
+| 店铺模块 | 20+ | - | - |
+| 优惠券模块 | 20+ | - | - |
 
 ![Allure报告截图](img/allure_report.png)
+
+Allure 报告在线查看：[GitHub Pages](https://zehuovo.github.io/yx-life-api-autotest/)
 
 yaml测试用例示例：
 [YAML模板使用说明](docs/YAML%E6%A8%A1%E6%9D%BF%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.md)
