@@ -1,0 +1,57 @@
+send_code_normal_valid_phone:
+  allure:
+    description: 验证使用有效的手机号发送验证码，接口返回成功状态为true
+    epic: 用户中心系统
+    feature: 用户认证模块
+    pytest_mark: smoke
+    story: 发送验证码
+    tag: [正常场景, 冒烟用例]
+    title: 发送验证码-正常场景-有效手机号发送成功
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: POST
+      params: {phone: '13800138001'}
+      url: /user/code
+    expected:
+      response: {success: true}
+      status_code: 200
+send_code_abnormal_invalid_phone:
+  allure:
+    description: 验证使用格式错误的手机号发送验证码，接口返回错误提示信息
+    epic: 用户中心系统
+    feature: 用户认证模块
+    pytest_mark: regression
+    story: 发送验证码
+    tag: [异常场景, 边界值测试]
+    title: 发送验证码-异常场景-无效手机号格式错误
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: POST
+      params: {phone: '12345'}
+      url: /user/code
+    expected:
+      response: {success: false, errorMsg: 手机号格式错误！}
+      status_code: 200
+send_code_abnormal_missing_phone:
+  allure:
+    description: 验证不传手机号参数时，接口返回错误提示
+    epic: 用户中心系统
+    feature: 用户认证模块
+    pytest_mark: regression
+    story: 发送验证码
+    tag: [异常场景, 参数缺失]
+    title: 发送验证码-异常场景-缺少手机号参数
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: POST
+      params: {}
+      url: /user/code
+    expected:
+      response: {}
+      status_code: 400

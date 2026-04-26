@@ -1,0 +1,7 @@
+INFO     HuZe:api_utils.py:86 =================================================查询当前登录用户-正常场景-获取用户基本信息=================================================
+INFO     HuZe:api_utils.py:68 1.正在发送请求
+INFO     HuZe:api_utils.py:69 {'method': 'GET', 'url': '/user/me', 'headers': {}, 'params': {}, 'json': {}}
+INFO     HuZe:api_utils.py:72 2.正在断言响应
+INFO     HuZe:api_utils.py:73 {'status_code': 200, 'response': {'data': {'required_fields': ['id', 'nickName', 'icon']}}}
+INFO     HuZe:response_checker.py:143 resp.json: {'success': True, 'data': {'id': 1011, 'nickName': 'user_nek3enuicc', 'icon': ''}}
+INFO     HuZe:response_checker.py:186 所有断言通过

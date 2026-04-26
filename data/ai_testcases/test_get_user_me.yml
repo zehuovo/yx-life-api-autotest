@@ -1,0 +1,60 @@
+user_me_normal_get_current_user:
+  allure:
+    description: 验证能够成功获取当前登录用户的基本信息，包括id、nickName、icon等字段
+    epic: 用户中心系统
+    feature: 用户信息模块
+    pytest_mark: smoke
+    story: 查询当前登录用户
+    tag: [正常场景, 冒烟用例]
+    title: 查询当前登录用户-正常场景-获取用户基本信息
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: GET
+      params: {}
+      url: /user/me
+    expected:
+      response:
+        data:
+          required_fields: [id, nickName, icon]
+        success: true
+      status_code: 200
+user_me_abnormal_invalid_token:
+  allure:
+    description: 验证携带无效的登录凭证时
+    epic: 用户中心系统
+    feature: 用户信息模块
+    pytest_mark: regression
+    story: 查询当前登录用户
+    tag: [异常场景, 权限测试]
+    title: 查询当前登录用户-异常场景-携带无效token
+  steps:
+    request:
+      headers: {Authorization: Bearer invalid_token_example}
+      json: {}
+      method: GET
+      params: {}
+      url: /user/me
+    expected:
+      response: {}
+      status_code: 401
+user_me_abnormal_no_token:
+  allure:
+    description: 验证未携带登录凭证时
+    epic: 用户中心系统
+    feature: 用户信息模块
+    pytest_mark: regression
+    story: 查询当前登录用户
+    tag: [异常场景, 权限测试]
+    title: 查询当前登录用户-异常场景-未携带token
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: GET
+      params: {}
+      url: /user/me
+    expected:
+      response: {}
+      status_code: 200

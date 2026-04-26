@@ -1,0 +1,212 @@
+# ============================================
+# 悦享生活服务平台 - 探店笔记模块测试用例数据
+# ============================================
+
+get_hot_blog:
+  allure:
+    title: "查询热门探店笔记"
+    description: "测试分页查询热门探店笔记列表"
+    epic: "悦享生活服务平台"
+    feature: "探店笔记模块"
+    story: "热门笔记"
+    tag: ["笔记", "接口测试"]
+    pytest_mark: "api"
+
+  steps:
+    request:
+      method: "GET"
+      url: "/blog/hot"
+      params:
+        current: 1
+      headers: {}
+
+    expected:
+      status_code: 200
+      response:
+        success: true
+
+get_blog_by_id:
+  allure:
+    title: "查询笔记详情"
+    description: "测试根据ID查询探店笔记详情"
+    epic: "悦享生活服务平台"
+    feature: "探店笔记模块"
+    story: "笔记详情"
+    tag: ["笔记", "接口测试"]
+    pytest_mark: "api"
+
+  steps:
+    request:
+      method: "GET"
+      url: "/blog/4"
+      headers: {}
+
+    expected:
+      status_code: 200
+      response:
+        success: true
+        data:
+          required_fields: ["id", "shopId", "userId", "title", "images", "content"]
+
+like_blog:
+  allure:
+    title: "点赞/取消点赞探店笔记"
+    description: "测试对探店笔记进行点赞或取消点赞"
+    epic: "悦享生活服务平台"
+    feature: "探店笔记模块"
+    story: "点赞"
+    tag: ["笔记", "接口测试"]
+    pytest_mark: "api"
+
+  steps:
+    request:
+      method: "PUT"
+      url: "/blog/like/4"
+      headers: {}
+
+    expected:
+      status_code: 200
+      response:
+        success: true
+
+get_blog_likes:
+  allure:
+    title: "查询笔记点赞列表"
+    description: "测试查询笔记的点赞用户列表"
+    epic: "悦享生活服务平台"
+    feature: "探店笔记模块"
+    story: "点赞"
+    tag: ["笔记", "接口测试"]
+    pytest_mark: "api"
+
+  steps:
+    request:
+      method: "GET"
+      url: "/blog/likes/4"
+      headers: {}
+
+    expected:
+      status_code: 200
+      response:
+        success: true
+
+get_blog_by_user:
+  allure:
+    title: "查询用户发布的笔记"
+    description: "测试查询指定用户发布的所有探店笔记"
+    epic: "悦享生活服务平台"
+    feature: "探店笔记模块"
+    story: "用户笔记"
+    tag: ["笔记", "接口测试"]
+    pytest_mark: "api"
+
+  steps:
+    request:
+      method: "GET"
+      url: "/blog/of/user"
+      params:
+        id: 1
+        current: 1
+      headers: {}
+
+    expected:
+      status_code: 200
+      response:
+        success: true
+
+get_blog_not_found:
+  allure:
+    title: "查询不存在的笔记"
+    description: "测试查询不存在的笔记ID，期望返回错误"
+    epic: "悦享生活服务平台"
+    feature: "探店笔记模块"
+    story: "笔记详情"
+    tag: ["笔记", "接口测试"]
+    pytest_mark: "api"
+
+  steps:
+    request:
+      method: "GET"
+      url: "/blog/99999"
+      headers: {}
+
+    expected:
+      status_code: 200
+      response:
+        success: false
+        errorMsg: "笔记不存在！"
+
+create_blog_empty_title:
+  allure:
+    title: "发布笔记-标题为空"
+    description: "测试发布标题为空的探店笔记，期望返回错误"
+    epic: "悦享生活服务平台"
+    feature: "探店笔记模块"
+    story: "发布笔记"
+    tag: ["笔记", "接口测试"]
+    pytest_mark: "api"
+
+  steps:
+    request:
+      method: "POST"
+      url: "/blog"
+      json:
+        shopId: 1
+        title: ""
+        images: "/imgs/blogs/blog1.jpg"
+        content: "这是一条测试内容"
+      headers: {}
+
+    expected:
+      status_code: 200
+      response:
+        success: false
+
+create_blog_no_login:
+  allure:
+    title: "发布笔记-未登录"
+    description: "测试未登录状态下发布探店笔记，期望返回鉴权失败"
+    epic: "悦享生活服务平台"
+    feature: "探店笔记模块"
+    story: "发布笔记"
+    tag: ["笔记", "接口测试"]
+    pytest_mark: "api"
+
+  steps:
+    request:
+      method: "POST"
+      url: "/blog"
+      json:
+        shopId: 1
+        title: "测试未登录发布${random}"
+        images: "/imgs/blogs/blog1.jpg"
+        content: "未登录发布的测试内容"
+      headers: {}
+
+    expected:
+      status_code: 401
+      response:
+        success: false
+
+get_my_blog:
+  allure:
+    title: "查询我的探店笔记"
+    description: "测试获取当前登录用户发布的探店笔记列表"
+    epic: "悦享生活服务平台"
+    feature: "探店笔记模块"
+    story: "我的笔记"
+    tag: ["笔记", "接口测试"]
+    pytest_mark: "api"
+
+  steps:
+    request:
+      method: "GET"
+      url: "/blog/of/me"
+      params:
+        current: 1
+      headers: {}
+
+    expected:
+      status_code: 200
+      response:
+        success: true

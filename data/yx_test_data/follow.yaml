@@ -1,0 +1,153 @@
+# ============================================
+# 悦享生活服务平台 - 关注模块测试用例数据
+# ============================================
+
+check_follow_status:
+  allure:
+    title: "查询是否已关注"
+    description: "测试查询当前用户是否已关注目标用户"
+    epic: "悦享生活服务平台"
+    feature: "关注模块"
+    story: "关注状态"
+    tag: ["关注", "接口测试"]
+    pytest_mark: "api"
+
+  steps:
+    request:
+      method: "GET"
+      url: "/follow/or/not/2"
+      headers: {}
+
+    expected:
+      status_code: 200
+      response:
+        success: true
+
+get_common_follows:
+  allure:
+    title: "查询共同关注"
+    description: "测试查询与目标用户的共同关注列表"
+    epic: "悦享生活服务平台"
+    feature: "关注模块"
+    story: "共同关注"
+    tag: ["关注", "接口测试"]
+    pytest_mark: "api"
+
+  steps:
+    request:
+      method: "GET"
+      url: "/follow/common/2"
+      headers: {}
+
+    expected:
+      status_code: 200
+      response:
+        success: true
+
+get_follow_feed:
+  allure:
+    title: "获取关注推送笔记"
+    description: "测试获取关注用户发布的探店笔记（Feed流滚动分页）"
+    epic: "悦享生活服务平台"
+    feature: "关注模块"
+    story: "关注推送"
+    tag: ["关注", "接口测试"]
+    pytest_mark: "api"
+
+  steps:
+    request:
+      method: "GET"
+      url: "/blog/of/follow"
+      params:
+        lastId: "${timestamp}"
+        offset: 0
+      headers: {}
+
+    expected:
+      status_code: 200
+      response:
+        success: true
+
+follow_user:
+  allure:
+    title: "关注用户"
+    description: "测试关注指定用户"
+    epic: "悦享生活服务平台"
+    feature: "关注模块"
+    story: "关注操作"
+    tag: ["关注", "接口测试"]
+    pytest_mark: "api"
+
+  steps:
+    request:
+      method: "PUT"
+      url: "/follow/1/true"
+      headers: {}
+
+    expected:
+      status_code: 200
+      response:
+        success: true
+
+unfollow_user:
+  allure:
+    title: "取消关注用户"
+    description: "测试取消关注指定用户"
+    epic: "悦享生活服务平台"
+    feature: "关注模块"
+    story: "关注操作"
+    tag: ["关注", "接口测试"]
+    pytest_mark: "api"
+
+  steps:
+    request:
+      method: "PUT"
+      url: "/follow/1/false"
+      headers: {}
+
+    expected:
+      status_code: 200
+      response:
+        success: true
+
+get_follow_list:
+  allure:
+    title: "查询用户关注列表"
+    description: "测试查询指定用户的关注列表"
+    epic: "悦享生活服务平台"
+    feature: "关注模块"
+    story: "关注列表"
+    tag: ["关注", "接口测试"]
+    pytest_mark: "api"
+
+  steps:
+    request:
+      method: "GET"
+      url: "/follow/follow/1"
+      headers: {}
+
+    expected:
+      status_code: 200
+      response:
+        success: true
+
+get_fan_list:
+  allure:
+    title: "查询用户粉丝列表"
+    description: "测试查询指定用户的粉丝列表"
+    epic: "悦享生活服务平台"
+    feature: "关注模块"
+    story: "粉丝列表"
+    tag: ["关注", "接口测试"]
+    pytest_mark: "api"
+
+  steps:
+    request:
+      method: "GET"
+      url: "/follow/fan/1"
+      headers: {}
+
+    expected:
+      status_code: 200
+      response:
+        success: true

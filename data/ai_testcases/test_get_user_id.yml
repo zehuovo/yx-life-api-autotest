@@ -1,0 +1,90 @@
+query_user_info_normal_valid_id:
+  allure:
+    title: 查询用户信息-正常场景-有效用户ID查询成功
+    description: 验证使用有效的用户ID查询用户信息
+    epic: 用户中心系统
+    feature: 用户信息模块
+    story: 查询用户信息
+    tag:
+    - 正常场景
+    - 冒烟用例
+    pytest_mark: smoke
+  steps:
+    request:
+      method: GET
+      url: /user/1
+      headers: {}
+      params: {}
+      json: {}
+    expected:
+      status_code: 200
+      response:
+        data:
+          required_fields:
+          - id
+          - nickName
+          - icon
+        success: true
+query_user_info_abnormal_invalid_id:
+  allure:
+    title: 查询用户信息-异常场景-无效用户ID查询失败
+    description: 验证使用不存在的用户ID查询用户信息
+    epic: 用户中心系统
+    feature: 用户信息模块
+    story: 查询用户信息
+    tag:
+    - 异常场景
+    - 边界值测试
+    pytest_mark: regression
+  steps:
+    request:
+      method: GET
+      url: /user/99999
+      headers: {}
+      params: {}
+      json: {}
+    expected:
+      status_code: 200
+      response: {}
+query_user_info_abnormal_negative_id:
+  allure:
+    title: 查询用户信息-异常场景-负数ID查询失败
+    description: 验证使用负数用户ID查询用户信息
+    epic: 用户中心系统
+    feature: 用户信息模块
+    story: 查询用户信息
+    tag:
+    - 异常场景
+    - 边界值测试
+    pytest_mark: regression
+  steps:
+    request:
+      method: GET
+      url: /user/-1
+      headers: {}
+      params: {}
+      json: {}
+    expected:
+      status_code: 200
+      response: {}
+query_user_info_abnormal_string_id:
+  allure:
+    title: 查询用户信息-异常场景-字符串ID查询失败
+    description: 验证使用字符串类型的用户ID查询用户信息
+    epic: 用户中心系统
+    feature: 用户信息模块
+    story: 查询用户信息
+    tag:
+    - 异常场景
+    - 边界值测试
+    pytest_mark: regression
+  steps:
+    request:
+      method: GET
+      url: /user/abc
+      headers: {}
+      params: {}
+      json: {}
+    expected:
+      status_code: 200
+      response: {}

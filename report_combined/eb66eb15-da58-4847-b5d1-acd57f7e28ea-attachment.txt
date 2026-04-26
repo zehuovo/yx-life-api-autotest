@@ -1,0 +1,6 @@
+INFO     HuZe:api_utils.py:86 ===================================================发布探店笔记-正常场景-成功发布笔记===================================================
+INFO     HuZe:api_utils.py:68 1.正在发送请求
+INFO     HuZe:api_utils.py:69 {'method': 'POST', 'url': '/blog', 'headers': {}, 'params': {}, 'json': {'shopId': 1, 'title': '探店笔记标题_1777125911', 'images': 'http://example.com/image.jpg', 'content': '这是一条探店笔记的内容'}}
+INFO     HuZe:api_utils.py:72 2.正在断言响应
+INFO     HuZe:api_utils.py:73 {'status_code': 200, 'response': {'data': {'required_fields': ['data']}, 'success': True}}
+INFO     HuZe:response_checker.py:143 resp.json: {'success': True, 'data': 29}

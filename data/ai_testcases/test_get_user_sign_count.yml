@@ -1,0 +1,23 @@
+user_sign_count_normal_query_success:
+  allure:
+    title: 查询签到次数-正常场景-成功查询签到累计次数
+    description: 验证用户成功查询签到累计次数，接口返回成功状态和签到次数
+    epic: 用户中心系统
+    feature: 签到模块
+    story: 查询签到次数
+    tag:
+    - 正常场景
+    - 冒烟用例
+    pytest_mark: smoke
+  steps:
+    request:
+      method: GET
+      url: /user/sign/count
+      headers: {}
+      params: {}
+      json: {}
+    expected:
+      status_code: 200
+      response:
+        success: true
+    extract: {}

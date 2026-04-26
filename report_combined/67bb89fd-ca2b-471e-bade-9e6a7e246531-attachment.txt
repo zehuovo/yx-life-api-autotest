@@ -1,0 +1,8 @@
+INFO     HuZe:api_utils.py:86 ======================================================发送验证码-手机号为空=======================================================
+INFO     HuZe:api_utils.py:68 1.正在发送请求
+INFO     HuZe:api_utils.py:69 {'method': 'POST', 'url': '/user/code', 'params': {'phone': ''}, 'headers': {}}
+INFO     HuZe:api_utils.py:72 2.正在断言响应
+INFO     HuZe:api_utils.py:73 {'status_code': 200, 'response': {'success': False, 'errorMsg': '手机号不能为空'}}
+INFO     HuZe:response_checker.py:143 resp.json: {'success': False, 'errorMsg': '手机号格式错误！'}
+ERROR    HuZe:response_checker.py:183 共 1 个断言失败:
+  - 响应字段: 期望 errorMsg='手机号不能为空', 实际 '手机号格式错误！'

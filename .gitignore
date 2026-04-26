@@ -5,6 +5,9 @@ scripts/
 config/config.yaml
 report/
 temps/
+allure-report/
+allure-results/
+fix_yaml_order.py
 .claude/
 data/ai_testcases/z_unuse/
 docx/

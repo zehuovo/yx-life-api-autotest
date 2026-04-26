@@ -1,0 +1,95 @@
+seckill_coupon_abnormal_invalid_id:
+  allure:
+    description: 验证使用不存在的优惠券ID进行秒杀，接口返回业务错误
+    epic: 秒杀系统
+    feature: 秒杀优惠券模块
+    pytest_mark: regression
+    story: 秒杀抢购优惠券
+    tag: [异常场景]
+    title: 秒杀优惠券-异常场景-无效优惠券ID
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: POST
+      params: {}
+      url: /voucher-order/seckill/99999
+    expected:
+      response: {}
+      status_code: 200
+seckill_coupon_abnormal_id_is_negative:
+  allure:
+    description: 验证传入负数的优惠券ID
+    epic: 秒杀系统
+    feature: 秒杀优惠券模块
+    pytest_mark: regression
+    story: 秒杀抢购优惠券
+    tag: [边界场景]
+    title: 秒杀优惠券-边界场景-优惠券ID为负数
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: POST
+      params: {}
+      url: /voucher-order/seckill/-1
+    expected:
+      response: {}
+      status_code: 200
+seckill_coupon_abnormal_id_is_string:
+  allure:
+    description: 验证传入字符串类型的优惠券ID
+    epic: 秒杀系统
+    feature: 秒杀优惠券模块
+    pytest_mark: regression
+    story: 秒杀抢购优惠券
+    tag: [异常场景, 参数校验]
+    title: 秒杀优惠券-异常场景-优惠券ID为字符串
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: POST
+      params: {}
+      url: /voucher-order/seckill/abc
+    expected:
+      response: {}
+      status_code: 200
+seckill_coupon_abnormal_id_is_zero:
+  allure:
+    description: 验证传入零值的优惠券ID
+    epic: 秒杀系统
+    feature: 秒杀优惠券模块
+    pytest_mark: regression
+    story: 秒杀抢购优惠券
+    tag: [边界场景]
+    title: 秒杀优惠券-边界场景-优惠券ID为零
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: POST
+      params: {}
+      url: /voucher-order/seckill/0
+    expected:
+      response: {}
+      status_code: 200
+seckill_coupon_normal_success:
+  allure:
+    description: 验证用户使用有效的优惠券ID进行秒杀
+    epic: 秒杀系统
+    feature: 秒杀优惠券模块
+    pytest_mark: smoke
+    story: 秒杀抢购优惠券
+    tag: [正常场景, 冒烟用例]
+    title: 秒杀优惠券-正常场景-成功抢购优惠券
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: POST
+      params: {}
+      url: /voucher-order/seckill/1
+    expected:
+      response: {}
+      status_code: 200

@@ -1,0 +1,10 @@
+INFO     HuZe:api_utils.py:86 ======================================================查询不存在的商铺优惠券=======================================================
+INFO     HuZe:api_utils.py:68 1.正在发送请求
+INFO     HuZe:api_utils.py:69 {'method': 'GET', 'url': '/voucher/list/99999', 'headers': {}}
+INFO     HuZe:api_utils.py:72 2.正在断言响应
+INFO     HuZe:api_utils.py:73 {'status_code': 200, 'response': {'success': True}}
+INFO     HuZe:response_checker.py:143 resp.json: {'success': True, 'data': []}
+INFO     HuZe:response_checker.py:186 所有断言通过
+INFO     HuZe:conftest.py:74 ==================================================================
+INFO     HuZe:conftest.py:75   悦享生活服务平台 自动化测试用例执行完毕，正在关闭环境...
+INFO     HuZe:conftest.py:76 ==================================================================

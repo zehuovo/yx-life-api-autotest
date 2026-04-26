@@ -1,0 +1,95 @@
+query_note_likes_abnormal_empty_id:
+  allure:
+    description: 验证使用空的笔记ID查询点赞列表
+    epic: 笔记管理
+    feature: 笔记互动模块
+    pytest_mark: ''
+    story: 查询笔记点赞列表
+    tag: [异常场景, 参数缺失]
+    title: 查询笔记点赞列表-异常场景-空笔记ID
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: GET
+      params: {}
+      url: /blog/likes/
+    expected:
+      response: {}
+      status_code: 200
+query_note_likes_abnormal_invalid_id:
+  allure:
+    description: 验证使用不存在的笔记ID查询点赞列表
+    epic: 笔记管理
+    feature: 笔记互动模块
+    pytest_mark: ''
+    story: 查询笔记点赞列表
+    tag: [异常场景]
+    title: 查询笔记点赞列表-异常场景-无效笔记ID
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: GET
+      params: {}
+      url: /blog/likes/999999
+    expected:
+      response: {}
+      status_code: 200
+query_note_likes_abnormal_negative_id:
+  allure:
+    description: 验证使用负数笔记ID查询点赞列表
+    epic: 笔记管理
+    feature: 笔记互动模块
+    pytest_mark: ''
+    story: 查询笔记点赞列表
+    tag: [异常场景, 边界值测试]
+    title: 查询笔记点赞列表-异常场景-负数笔记ID
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: GET
+      params: {}
+      url: /blog/likes/-1
+    expected:
+      response: {}
+      status_code: 200
+query_note_likes_abnormal_string_id:
+  allure:
+    description: 验证使用字符串类型的笔记ID查询点赞列表
+    epic: 笔记管理
+    feature: 笔记互动模块
+    pytest_mark: ''
+    story: 查询笔记点赞列表
+    tag: [异常场景, 类型错误]
+    title: 查询笔记点赞列表-异常场景-字符串笔记ID
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: GET
+      params: {}
+      url: /blog/likes/abc
+    expected:
+      response: {}
+      status_code: 200
+query_note_likes_normal_valid_id:
+  allure:
+    description: 验证使用有效的笔记ID查询点赞列表
+    epic: 笔记管理
+    feature: 笔记互动模块
+    pytest_mark: smoke
+    story: 查询笔记点赞列表
+    tag: [正常场景, 冒烟用例]
+    title: 查询笔记点赞列表-正常场景-有效笔记ID
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: GET
+      params: {}
+      url: /blog/likes/1
+    expected:
+      response: {}
+      status_code: 200

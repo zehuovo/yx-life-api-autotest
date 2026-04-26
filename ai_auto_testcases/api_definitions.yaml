@@ -1,0 +1,570 @@
+# ============================================
+# 悦享生活服务平台 - API接口定义
+# 手动定义（无需Swagger），供AI生成测试用例使用
+# ============================================
+
+# ==================== 用户模块 ====================
+- api_name: "发送验证码"
+  path: "/user/code"
+  method: POST
+  description: "向指定手机号发送验证码"
+  parameters:
+    - name: phone
+      in: query
+      required: true
+      type: string
+      description: "手机号"
+  responses:
+    success:
+      description: "发送成功"
+      schema:
+        properties:
+          success: { type: boolean, example: true }
+    fail:
+      description: "发送失败"
+      schema:
+        properties:
+          success: { type: boolean, example: false }
+          errorMsg: { type: string, example: "手机号格式错误！" }
+
+- api_name: "用户登录"
+  path: "/user/login"
+  method: POST
+  description: "手机验证码登录"
+  parameters:
+    - name: phone
+      in: body
+      required: true
+      type: string
+      description: "手机号"
+    - name: code
+      in: body
+      required: true
+      type: string
+      description: "验证码"
+  responses:
+    success:
+      description: "登录成功，返回token"
+      schema:
+        properties:
+          success: { type: boolean, example: true }
+          data: { type: string, description: "JWT token" }
+    fail:
+      description: "登录失败"
+      schema:
+        properties:
+          success: { type: boolean, example: false }
+          errorMsg: { type: string, example: "验证码错误" }
+
+- api_name: "查询用户信息"
+  path: "/user/{id}"
+  method: GET
+  description: "根据用户ID查询用户信息"
+  parameters:
+    - name: id
+      in: path
+      required: true
+      type: integer
+      description: "用户ID"
+  responses:
+    success:
+      schema:
+        properties:
+          success: { type: boolean, example: true }
+          data:
+            properties:
+              id: { type: integer }
+              nickName: { type: string }
+              icon: { type: string }
+
+- api_name: "用户签到"
+  path: "/user/sign"
+  method: POST
+  description: "用户签到"
+  responses:
+    success:
+      schema:
+        properties:
+          success: { type: boolean, example: true }
+
+- api_name: "查询签到次数"
+  path: "/user/sign/count"
+  method: GET
+  description: "查询当前用户签到累计次数"
+  responses:
+    success:
+      schema:
+        properties:
+          success: { type: boolean, example: true }
+          data: { type: integer }
+
+- api_name: "查询当前登录用户"
+  path: "/user/me"
+  method: GET
+  description: "获取当前登录用户基本信息"
+  responses:
+    success:
+      schema:
+        properties:
+          success: { type: boolean, example: true }
+          data:
+            properties:
+              id: { type: integer }
+              nickName: { type: string }
+              icon: { type: string }
+
+- api_name: "查询用户详情"
+  path: "/user/info/{id}"
+  method: GET
+  description: "通过用户ID查询用户详细信息（昵称、头像等）"
+  parameters:
+    - name: id
+      in: path
+      required: true
+      type: integer
+      description: "用户ID"
+  responses:
+    success:
+      schema:
+        properties:
+          success: { type: boolean, example: true }
+          data:
+            properties:
+              id: { type: integer }
+              nickName: { type: string }
+              icon: { type: string }
+
+# ==================== 关注模块 ====================
+- api_name: "查询关注状态"
+  path: "/follow/or/not/{id}"
+  method: GET
+  description: "查询当前用户是否已关注目标用户"
+  parameters:
+    - name: id
+      in: path
+      required: true
+      type: integer
+      description: "目标用户ID"
+  responses:
+    success:
+      schema:
+        properties:
+          success: { type: boolean, example: true }
+
+- api_name: "查询共同关注"
+  path: "/follow/common/{id}"
+  method: GET
+  description: "查询与目标用户的共同关注列表"
+  parameters:
+    - name: id
+      in: path
+      required: true
+      type: integer
+      description: "目标用户ID"
+  responses:
+    success:
+      schema:
+        properties:
+          success: { type: boolean, example: true }
+
+- api_name: "获取关注推送"
+  path: "/blog/of/follow"
+  method: GET
+  description: "获取关注用户发布的探店笔记（Feed流滚动分页）"
+  parameters:
+    - name: lastId
+      in: query
+      required: false
+      type: integer
+      description: "上次查询的最后一个ID（用于滚动分页）"
+    - name: offset
+      in: query
+      required: false
+      type: integer
+      description: "偏移量"
+  responses:
+    success:
+      schema:
+        properties:
+          success: { type: boolean, example: true }
+
+- api_name: "关注/取消关注用户"
+  path: "/follow/{id}/{followed}"
+  method: PUT
+  description: "关注或取消关注指定用户"
+  parameters:
+    - name: id
+      in: path
+      required: true
+      type: integer
+      description: "目标用户ID"
+    - name: followed
+      in: path
+      required: true
+      type: boolean
+      description: "true=关注, false=取消关注"
+  responses:
+    success:
+      schema:
+        properties:
+          success: { type: boolean, example: true }
+
+- api_name: "查询关注列表"
+  path: "/follow/follow/{id}"
+  method: GET
+  description: "查询指定用户的关注列表"
+  parameters:
+    - name: id
+      in: path
+      required: true
+      type: integer
+      description: "用户ID"
+  responses:
+    success:
+      schema:
+        properties:
+          success: { type: boolean, example: true }
+
+- api_name: "查询粉丝列表"
+  path: "/follow/fan/{id}"
+  method: GET
+  description: "查询指定用户的粉丝列表"
+  parameters:
+    - name: id
+      in: path
+      required: true
+      type: integer
+      description: "用户ID"
+  responses:
+    success:
+      schema:
+        properties:
+          success: { type: boolean, example: true }
+
+# ==================== 探店笔记模块 ====================
+- api_name: "查询热门笔记"
+  path: "/blog/hot"
+  method: GET
+  description: "分页查询热门探店笔记列表"
+  parameters:
+    - name: current
+      in: query
+      required: false
+      type: integer
+      description: "页码"
+  responses:
+    success:
+      schema:
+        properties:
+          success: { type: boolean, example: true }
+          data:
+            properties:
+              records: { type: array, description: "笔记列表" }
+
+- api_name: "查询笔记详情"
+  path: "/blog/{id}"
+  method: GET
+  description: "根据ID查询探店笔记详情"
+  parameters:
+    - name: id
+      in: path
+      required: true
+      type: integer
+      description: "笔记ID"
+  responses:
+    success:
+      schema:
+        properties:
+          success: { type: boolean, example: true }
+          data:
+            properties:
+              id: { type: integer }
+              shopId: { type: integer }
+              userId: { type: integer }
+              title: { type: string }
+              images: { type: string }
+              content: { type: string }
+
+- api_name: "点赞探店笔记"
+  path: "/blog/like/{id}"
+  method: PUT
+  description: "对探店笔记进行点赞或取消点赞"
+  parameters:
+    - name: id
+      in: path
+      required: true
+      type: integer
+      description: "笔记ID"
+  responses:
+    success:
+      schema:
+        properties:
+          success: { type: boolean, example: true }
+
+- api_name: "查询笔记点赞列表"
+  path: "/blog/likes/{id}"
+  method: GET
+  description: "查询笔记的点赞用户列表"
+  parameters:
+    - name: id
+      in: path
+      required: true
+      type: integer
+      description: "笔记ID"
+  responses:
+    success:
+      schema:
+        properties:
+          success: { type: boolean, example: true }
+
+- api_name: "查询用户笔记"
+  path: "/blog/of/user"
+  method: GET
+  description: "查询指定用户发布的所有探店笔记"
+  parameters:
+    - name: id
+      in: query
+      required: true
+      type: integer
+      description: "用户ID"
+    - name: current
+      in: query
+      required: false
+      type: integer
+      description: "页码"
+  responses:
+    success:
+      schema:
+        properties:
+          success: { type: boolean, example: true }
+
+- api_name: "查询我的笔记"
+  path: "/blog/of/me"
+  method: GET
+  description: "获取当前登录用户发布的探店笔记列表"
+  parameters:
+    - name: current
+      in: query
+      required: false
+      type: integer
+      description: "页码"
+  responses:
+    success:
+      schema:
+        properties:
+          success: { type: boolean, example: true }
+
+- api_name: "发布探店笔记"
+  path: "/blog"
+  method: POST
+  description: "发布新的探店笔记"
+  parameters:
+    - name: shopId
+      in: body
+      required: true
+      type: integer
+      description: "店铺ID"
+    - name: title
+      in: body
+      required: true
+      type: string
+      description: "笔记标题"
+    - name: images
+      in: body
+      required: false
+      type: string
+      description: "图片URL"
+    - name: content
+      in: body
+      required: false
+      type: string
+      description: "笔记内容"
+  responses:
+    success:
+      schema:
+        properties:
+          success: { type: boolean, example: true }
+          data: { type: integer, description: "笔记ID" }
+
+# ==================== 店铺模块 ====================
+- api_name: "查询商铺详情"
+  path: "/shop/{id}"
+  method: GET
+  description: "根据ID查询商铺详细信息（含Redis缓存逻辑）"
+  parameters:
+    - name: id
+      in: path
+      required: true
+      type: integer
+      description: "商铺ID"
+  responses:
+    success:
+      schema:
+        properties:
+          success: { type: boolean, example: true }
+          data:
+            properties:
+              id: { type: integer }
+              name: { type: string }
+              typeId: { type: integer }
+              images: { type: string }
+
+- api_name: "查询商铺类型"
+  path: "/shop-type/list"
+  method: GET
+  description: "获取商铺类型列表"
+  responses:
+    success:
+      schema:
+        properties:
+          success: { type: boolean, example: true }
+          data:
+            type: array
+
+- api_name: "按类型查询商铺"
+  path: "/shop/{typeId}/{current}"
+  method: GET
+  description: "根据商铺类型分页查询商铺列表"
+  parameters:
+    - name: typeId
+      in: path
+      required: true
+      type: integer
+      description: "商铺类型ID"
+    - name: current
+      in: path
+      required: true
+      type: integer
+      description: "页码"
+  responses:
+    success:
+      schema:
+        properties:
+          success: { type: boolean, example: true }
+
+- api_name: "查询商铺附近信息"
+  path: "/shop/of/type"
+  method: GET
+  description: "按类型查询商铺（含附近/距离排序）"
+  parameters:
+    - name: typeId
+      in: query
+      required: true
+      type: integer
+      description: "商铺类型ID"
+    - name: current
+      in: query
+      required: false
+      type: integer
+      description: "页码"
+    - name: x
+      in: query
+      required: false
+      type: number
+      description: "经度"
+    - name: y
+      in: query
+      required: false
+      type: number
+      description: "纬度"
+  responses:
+    success:
+      schema:
+        properties:
+          success: { type: boolean, example: true }
+
+# ==================== 优惠券模块 ====================
+- api_name: "秒杀优惠券"
+  path: "/voucher-order/seckill/{id}"
+  method: POST
+  description: "秒杀抢购优惠券"
+  parameters:
+    - name: id
+      in: path
+      required: true
+      type: integer
+      description: "优惠券ID"
+  responses:
+    success:
+      schema:
+        properties:
+          success: { type: boolean, example: true }
+          data: { type: integer, description: "订单ID" }
+
+- api_name: "查询优惠券"
+  path: "/voucher/{shopId}"
+  method: GET
+  description: "根据商铺ID查询优惠券列表"
+  parameters:
+    - name: shopId
+      in: path
+      required: true
+      type: integer
+      description: "商铺ID"
+  responses:
+    success:
+      schema:
+        properties:
+          success: { type: boolean, example: true }
+
+- api_name: "新增优惠券"
+  path: "/voucher"
+  method: POST
+  description: "新增优惠券（包含秒杀信息）"
+  parameters:
+    - name: shopId
+      in: body
+      required: true
+      type: integer
+      description: "商铺ID"
+    - name: title
+      in: body
+      required: true
+      type: string
+      description: "优惠券标题"
+    - name: subtitle
+      in: body
+      required: false
+      type: string
+      description: "副标题"
+    - name: rules
+      in: body
+      required: false
+      type: string
+      description: "使用规则"
+    - name: payValue
+      in: body
+      required: true
+      type: integer
+      description: "支付金额(分)"
+    - name: actualValue
+      in: body
+      required: true
+      type: integer
+      description: "实际价值(分)"
+    - name: type
+      in: body
+      required: true
+      type: integer
+      description: "优惠券类型"
+    - name: stock
+      in: body
+      required: false
+      type: integer
+      description: "秒杀库存"
+    - name: beginTime
+      in: body
+      required: false
+      type: string
+      description: "秒杀开始时间"
+    - name: endTime
+      in: body
+      required: false
+      type: string
+      description: "秒杀结束时间"
+  responses:
+    success:
+      schema:
+        properties:
+          success: { type: boolean, example: true }
+          data: { type: integer, description: "优惠券ID" }

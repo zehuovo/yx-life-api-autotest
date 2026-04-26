@@ -1,0 +1,6 @@
+INFO     HuZe:api_utils.py:86 ===================================================新增优惠券-正常场景-所有必填字段====================================================
+INFO     HuZe:api_utils.py:68 1.正在发送请求
+INFO     HuZe:api_utils.py:69 {'method': 'POST', 'url': '/voucher', 'headers': {}, 'params': {}, 'json': {'shopId': 1, 'title': '测试优惠券_1777125911', 'payValue': 1000, 'actualValue': 1500, 'type': 1}}
+INFO     HuZe:api_utils.py:72 2.正在断言响应
+INFO     HuZe:api_utils.py:73 {'status_code': 200, 'response': {'data': {'required_fields': ['id']}, 'success': True}}
+INFO     HuZe:response_checker.py:143 resp.json: {'success': True, 'data': 22}

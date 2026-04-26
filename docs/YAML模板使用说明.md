@@ -47,7 +47,7 @@ allure:
 allure:
   title: "用户登录接口"
   description: "测试使用正确的账号密码登录系统"
-  epic: "InvEntropy"
+  epic: "悦享生活服务平台"
   feature: "登录模块"
   story: "登录接口"
   tag: ["登录", "接口测试", "Smoke"]
@@ -237,7 +237,7 @@ login:
   allure:
     title: "管理员登录"
     description: "测试使用正确的管理员账号密码登录"
-    epic: "InvEntropy"
+    epic: "悦享生活服务平台"
     feature: "登录模块"
     story: "登录接口"
     tag: ["登录", "Smoke"]
@@ -272,7 +272,7 @@ get_projects:
   allure:
     title: "获取项目列表"
     description: "获取待审批项目列表"
-    epic: "InvEntropy"
+    epic: "悦享生活服务平台"
     feature: "管理员模块"
     story: "项目审批"
     tag: ["管理员", "列表"]
@@ -311,7 +311,7 @@ update_project_status:
   allure:
     title: "审批项目"
     description: "管理员审批项目通过"
-    epic: "InvEntropy"
+    epic: "悦享生活服务平台"
     feature: "管理员模块"
     story: "项目审批"
     tag: ["管理员", "更新"]

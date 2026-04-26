@@ -1,0 +1,100 @@
+query_follow_status_normal_followed:
+  allure:
+    title: 查询关注状态-正常场景-已关注
+    description: 验证当前用户已关注目标用户时
+    epic: 用户关系系统
+    feature: 关注模块
+    story: 查询关注状态
+    tag: [正常场景, 冒烟用例]
+    pytest_mark: smoke
+  steps:
+    request:
+      method: GET
+      url: /follow/or/not/1
+      headers: {}
+      params: {}
+      json: {}
+    expected:
+      status_code: 200
+      response: {}
+    extract: {}
+query_follow_status_normal_not_followed:
+  allure:
+    title: 查询关注状态-正常场景-未关注
+    description: 验证当前用户未关注目标用户时
+    epic: 用户关系系统
+    feature: 关注模块
+    story: 查询关注状态
+    tag: [正常场景]
+    pytest_mark: regression
+  steps:
+    request:
+      method: GET
+      url: /follow/or/not/2
+      headers: {}
+      params: {}
+      json: {}
+    expected:
+      status_code: 200
+      response: {}
+    extract: {}
+query_follow_status_abnormal_invalid_id:
+  allure:
+    title: 查询关注状态-异常场景-无效ID
+    description: 验证传入无效的目标用户ID时
+    epic: 用户关系系统
+    feature: 关注模块
+    story: 查询关注状态
+    tag: [异常场景]
+    pytest_mark: regression
+  steps:
+    request:
+      method: GET
+      url: /follow/or/not/0
+      headers: {}
+      params: {}
+      json: {}
+    expected:
+      status_code: 200
+      response: {}
+    extract: {}
+query_follow_status_abnormal_missing_id:
+  allure:
+    title: 查询关注状态-异常场景-缺少ID
+    description: 验证请求路径中缺少目标用户ID时
+    epic: 用户关系系统
+    feature: 关注模块
+    story: 查询关注状态
+    tag: [异常场景]
+    pytest_mark: regression
+  steps:
+    request:
+      method: GET
+      url: /follow/or/not/
+      headers: {}
+      params: {}
+      json: {}
+    expected:
+      status_code: 405
+      response: {}
+    extract: {}
+query_follow_status_boundary_max_id:
+  allure:
+    title: 查询关注状态-边界场景-最大ID值
+    description: 验证传入最大整数值的目标用户ID时
+    epic: 用户关系系统
+    feature: 关注模块
+    story: 查询关注状态
+    tag: [边界场景]
+    pytest_mark: regression
+  steps:
+    request:
+      method: GET
+      url: /follow/or/not/2147483647
+      headers: {}
+      params: {}
+      json: {}
+    expected:
+      status_code: 200
+      response: {}
+    extract: {}

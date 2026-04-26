@@ -1,0 +1,139 @@
+query_user_notes_abnormal_invalid_id_type:
+  allure:
+    description: 验证用户ID传入非整数类型时
+    epic: 博客系统
+    feature: 笔记管理模块
+    pytest_mark: regression
+    story: 查询用户笔记
+    tag: [异常场景, 参数校验]
+    title: 查询用户笔记-异常场景-用户ID参数类型错误
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: GET
+      params: {id: abc}
+      url: /blog/of/user
+    expected:
+      response: {}
+      status_code: 200
+query_user_notes_abnormal_missing_id:
+  allure:
+    description: 验证不传用户ID参数时
+    epic: 博客系统
+    feature: 笔记管理模块
+    pytest_mark: regression
+    story: 查询用户笔记
+    tag: [异常场景, 参数校验]
+    title: 查询用户笔记-异常场景-缺少用户ID参数
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: GET
+      params: {}
+      url: /blog/of/user
+    expected:
+      response: {}
+      status_code: 400
+query_user_notes_abnormal_non_existent_user:
+  allure:
+    description: 验证使用不存在的用户ID查询笔记时
+    epic: 博客系统
+    feature: 笔记管理模块
+    pytest_mark: regression
+    story: 查询用户笔记
+    tag: [异常场景, 业务规则]
+    title: 查询用户笔记-异常场景-用户ID不存在
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: GET
+      params: {id: 99999}
+      url: /blog/of/user
+    expected:
+      response: {}
+      status_code: 200
+query_user_notes_boundary_negative_id:
+  allure:
+    description: 验证用户ID传入负数时
+    epic: 博客系统
+    feature: 笔记管理模块
+    pytest_mark: regression
+    story: 查询用户笔记
+    tag: [边界场景, 参数校验]
+    title: 查询用户笔记-边界场景-用户ID为负数
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: GET
+      params: {id: -1}
+      url: /blog/of/user
+    expected:
+      response: {}
+      status_code: 200
+query_user_notes_boundary_zero_id:
+  allure:
+    description: 验证用户ID传入0时
+    epic: 博客系统
+    feature: 笔记管理模块
+    pytest_mark: regression
+    story: 查询用户笔记
+    tag: [边界场景, 参数校验]
+    title: 查询用户笔记-边界场景-用户ID为0
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: GET
+      params: {id: 0}
+      url: /blog/of/user
+    expected:
+      response: {}
+      status_code: 400
+query_user_notes_normal_valid_user_id:
+  allure:
+    description: 验证使用有效的用户ID查询笔记，接口能正常返回数据
+    epic: 博客系统
+    feature: 笔记管理模块
+    pytest_mark: smoke
+    story: 查询用户笔记
+    tag: [正常场景, 冒烟用例]
+    title: 查询用户笔记-正常场景-有效用户ID查询成功
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: GET
+      params: {current: 1, id: 1}
+      url: /blog/of/user
+    expected:
+      response:
+        data:
+          required_fields: [records, total, size, current, pages]
+        success: true
+      status_code: 200
+query_user_notes_normal_without_current:
+  allure:
+    description: 验证不传页码参数，接口使用默认值正常返回数据
+    epic: 博客系统
+    feature: 笔记管理模块
+    pytest_mark: regression
+    story: 查询用户笔记
+    tag: [正常场景]
+    title: 查询用户笔记-正常场景-不传页码参数查询成功
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: GET
+      params: {id: 1}
+      url: /blog/of/user
+    expected:
+      response:
+        data:
+          required_fields: [records, total, size, current, pages]
+        success: true
+      status_code: 200

@@ -1,0 +1,23 @@
+shop_type_list_normal_get_list:
+  allure:
+    title: 查询商铺类型-正常场景-获取商铺类型列表
+    description: 验证用户成功获取商铺类型列表，接口正常返回数据
+    epic: 商铺管理系统
+    feature: 商铺类型管理
+    story: 查询商铺类型列表
+    tag:
+    - 正常场景
+    - 冒烟用例
+    pytest_mark: smoke
+  steps:
+    request:
+      method: GET
+      url: /shop-type/list
+      headers: {}
+      params: {}
+      json: {}
+    expected:
+      status_code: 200
+      response:
+        success: true
+    extract: {}

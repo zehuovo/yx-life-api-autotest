@@ -1,0 +1,19 @@
+query_fan_list_abnormal_invalid_id:
+  allure:
+    description: 验证使用无效ID查询粉丝列表
+    epic: 用户关系系统
+    feature: 关注模块
+    pytest_mark: regression
+    story: 查询粉丝列表
+    tag: [异常场景]
+    title: 查询粉丝列表-异常场景-无效用户ID
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: GET
+      params: {}
+      url: /follow/or/not/1
+    expected:
+      response: {}
+      status_code: 200

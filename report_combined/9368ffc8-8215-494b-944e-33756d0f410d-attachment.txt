@@ -1,0 +1,8 @@
+INFO     HuZe:api_utils.py:86 ====================================================查询关注状态-正常场景-已关注=====================================================
+INFO     HuZe:api_utils.py:68 1.正在发送请求
+INFO     HuZe:api_utils.py:69 {'method': 'GET', 'url': '/follow/or/not/1', 'headers': {}, 'params': {}, 'json': {}}
+INFO     HuZe:api_utils.py:72 2.正在断言响应
+INFO     HuZe:api_utils.py:73 {'status_code': 200, 'response': {'data': {}, 'success': True}}
+INFO     HuZe:response_checker.py:143 resp.json: {'success': True, 'data': False}
+INFO     HuZe:response_checker.py:186 所有断言通过
+INFO     HuZe:api_utils.py:76 3.正在提取变量

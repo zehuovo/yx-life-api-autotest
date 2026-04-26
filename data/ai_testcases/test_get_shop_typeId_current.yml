@@ -1,0 +1,114 @@
+shop_query_by_type_normal_valid_params:
+  allure:
+    description: 验证使用有效的商铺类型ID和页码，能够正常查询到商铺列表
+    epic: 商铺管理系统
+    feature: 商铺查询模块
+    pytest_mark: smoke
+    story: 按类型查询商铺
+    tag: [正常场景, 冒烟用例]
+    title: 按类型查询商铺-正常场景-有效参数查询
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: GET
+      params: {typeId: 1, current: 1}
+      url: /shop/of/type
+    expected:
+      response: {success: true}
+      status_code: 200
+shop_query_by_type_abnormal_invalid_typeId:
+  allure:
+    description: 验证使用不存在的商铺类型ID
+    epic: 商铺管理系统
+    feature: 商铺查询模块
+    pytest_mark: regression
+    story: 按类型查询商铺
+    tag: [异常场景, 参数校验]
+    title: 按类型查询商铺-异常场景-无效商铺类型ID
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: GET
+      params: {typeId: 99999, current: 1}
+      url: /shop/of/type
+    expected:
+      response: {}
+      status_code: 200
+shop_query_by_type_abnormal_invalid_current:
+  allure:
+    description: 验证使用无效的页码
+    epic: 商铺管理系统
+    feature: 商铺查询模块
+    pytest_mark: regression
+    story: 按类型查询商铺
+    tag: [异常场景, 参数校验]
+    title: 按类型查询商铺-异常场景-无效页码
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: GET
+      params: {typeId: 1, current: -1}
+      url: /shop/of/type
+    expected:
+      response: {}
+      status_code: 200
+shop_query_by_type_abnormal_negative_typeId:
+  allure:
+    description: 验证使用负数商铺类型ID
+    epic: 商铺管理系统
+    feature: 商铺查询模块
+    pytest_mark: regression
+    story: 按类型查询商铺
+    tag: [异常场景, 边界值测试]
+    title: 按类型查询商铺-异常场景-负数商铺类型ID
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: GET
+      params: {typeId: -1, current: 1}
+      url: /shop/of/type
+    expected:
+      response: {}
+      status_code: 200
+shop_query_by_type_abnormal_large_current:
+  allure:
+    description: 验证使用超大的页码（超过总页数），接口返回空数据列表
+    epic: 商铺管理系统
+    feature: 商铺查询模块
+    pytest_mark: regression
+    story: 按类型查询商铺
+    tag: [异常场景, 边界值测试]
+    title: 按类型查询商铺-异常场景-超大页码
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: GET
+      params: {typeId: 1, current: 99999}
+      url: /shop/of/type
+    expected:
+      response: {success: true}
+      status_code: 200
+shop_query_by_type_normal_valid_params_page_2:
+  allure:
+    description: 验证使用有效的商铺类型ID和页码2，能够正常查询到商铺列表的第二页数据
+    epic: 商铺管理系统
+    feature: 商铺查询模块
+    pytest_mark: regression
+    story: 按类型查询商铺
+    tag: [正常场景, 分页测试]
+    title: 按类型查询商铺-正常场景-查询第二页数据
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: GET
+      params: {typeId: 1, current: 2}
+      url: /shop/of/type
+    expected:
+      response: {success: true}
+      status_code: 200

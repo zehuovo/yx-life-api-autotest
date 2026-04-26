@@ -1,0 +1,9 @@
+INFO     HuZe:api_utils.py:86 ===================================================查询关注列表-边界场景-用户ID为0===================================================
+INFO     HuZe:api_utils.py:68 1.正在发送请求
+INFO     HuZe:api_utils.py:69 {'method': 'GET', 'url': '/follow/follow/0', 'headers': {}, 'params': {}, 'json': {}}
+INFO     HuZe:api_utils.py:72 2.正在断言响应
+INFO     HuZe:api_utils.py:73 {'status_code': 200, 'response': {'data': {}, 'success': False}}
+INFO     HuZe:response_checker.py:143 resp.json: {'timestamp': '2026-04-25T14:05:11.045+00:00', 'status': 405, 'error': 'Method Not Allowed', 'message': '', 'path': '/follow/follow/0'}
+ERROR    HuZe:response_checker.py:183 共 2 个断言失败:
+  - 状态码: 期望 200, 实际 405
+  - 缺少响应字段: success

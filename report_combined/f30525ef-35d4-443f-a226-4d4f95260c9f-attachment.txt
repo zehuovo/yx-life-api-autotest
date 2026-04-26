@@ -1,0 +1,8 @@
+INFO     HuZe:api_utils.py:86 ===================================================秒杀优惠券-正常场景-成功抢购优惠券===================================================
+INFO     HuZe:api_utils.py:68 1.正在发送请求
+INFO     HuZe:api_utils.py:69 {'method': 'POST', 'url': '/voucher-order/seckill/{id}', 'headers': {}, 'params': {}, 'json': {}}
+INFO     HuZe:api_utils.py:72 2.正在断言响应
+INFO     HuZe:api_utils.py:73 {'status_code': 200, 'response': {'data': {'required_fields': ['data']}, 'success': True}}
+INFO     HuZe:response_checker.py:143 resp.json: {'success': False, 'errorMsg': '服务器异常'}
+ERROR    HuZe:response_checker.py:183 共 1 个断言失败:
+  - 响应字段: 期望 success=True, 实际 False

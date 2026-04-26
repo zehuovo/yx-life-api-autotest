@@ -1,0 +1,9 @@
+INFO     HuZe:api_utils.py:86 ===================================================查询我的笔记-正常场景-空列表查询====================================================
+INFO     HuZe:api_utils.py:68 1.正在发送请求
+INFO     HuZe:api_utils.py:69 {'method': 'GET', 'url': '/blog/of/me', 'headers': {'Authorization': ''}, 'params': {'current': 9999}, 'json': {}}
+INFO     HuZe:api_utils.py:72 2.正在断言响应
+INFO     HuZe:api_utils.py:73 {'status_code': 200, 'response': {'data': {'required_fields': ['records', 'total', 'size', 'current', 'pages'], 'list_check': {'records': {'length': 0}}}, 'success': True}}
+INFO     HuZe:response_checker.py:143 resp.json: {}
+ERROR    HuZe:response_checker.py:183 共 2 个断言失败:
+  - 状态码: 期望 200, 实际 401
+  - 缺少响应字段: success

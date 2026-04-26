@@ -1,0 +1,190 @@
+get_follow_feed_abnormal_lastId_negative:
+  allure:
+    description: 验证传入负数lastId时，接口能正确处理
+    epic: 博客系统
+    feature: 关注模块
+    pytest_mark: regression
+    story: 获取关注推送
+    tag: [异常场景, 边界值测试]
+    title: 获取关注推送-异常场景-lastId为负数
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: GET
+      params: {lastId: -1}
+      url: /blog/of/follow
+    expected:
+      response: {}
+      status_code: 200
+get_follow_feed_abnormal_lastId_string:
+  allure:
+    description: 验证传入字符串类型lastId时，接口能正确处理
+    epic: 博客系统
+    feature: 关注模块
+    pytest_mark: regression
+    story: 获取关注推送
+    tag: [异常场景, 类型错误]
+    title: 获取关注推送-异常场景-lastId为字符串
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: GET
+      params: {lastId: abc}
+      url: /blog/of/follow
+    expected:
+      response: {}
+      status_code: 200
+get_follow_feed_abnormal_offset_negative:
+  allure:
+    description: 验证传入负数offset时，接口能正确处理
+    epic: 博客系统
+    feature: 关注模块
+    pytest_mark: regression
+    story: 获取关注推送
+    tag: [异常场景, 边界值测试]
+    title: 获取关注推送-异常场景-offset为负数
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: GET
+      params: {offset: -5}
+      url: /blog/of/follow
+    expected:
+      response: {}
+      status_code: 200
+get_follow_feed_abnormal_offset_string:
+  allure:
+    description: 验证传入字符串类型offset时，接口能正确处理
+    epic: 博客系统
+    feature: 关注模块
+    pytest_mark: regression
+    story: 获取关注推送
+    tag: [异常场景, 类型错误]
+    title: 获取关注推送-异常场景-offset为字符串
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: GET
+      params: {offset: xyz}
+      url: /blog/of/follow
+    expected:
+      response: {}
+      status_code: 200
+get_follow_feed_boundary_lastId_zero:
+  allure:
+    description: 验证传入lastId为0时，接口能正确处理边界值
+    epic: 博客系统
+    feature: 关注模块
+    pytest_mark: regression
+    story: 获取关注推送
+    tag: [边界场景, 边界值测试]
+    title: 获取关注推送-边界场景-lastId为0
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: GET
+      params: {lastId: 0}
+      url: /blog/of/follow
+    expected:
+      response: {}
+      status_code: 200
+get_follow_feed_boundary_offset_zero:
+  allure:
+    description: 验证传入offset为0时，接口能正确处理边界值
+    epic: 博客系统
+    feature: 关注模块
+    pytest_mark: regression
+    story: 获取关注推送
+    tag: [边界场景, 边界值测试]
+    title: 获取关注推送-边界场景-offset为0
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: GET
+      params: {offset: 0}
+      url: /blog/of/follow
+    expected:
+      response: {}
+      status_code: 200
+get_follow_feed_normal_with_both_params:
+  allure:
+    description: 验证同时传入lastId和offset参数时，接口能正确返回滚动分页后的Feed流数据
+    epic: 博客系统
+    feature: 关注模块
+    pytest_mark: regression
+    story: 获取关注推送
+    tag: [正常场景, 分页测试]
+    title: 获取关注推送-正常场景-同时指定lastId和offset参数
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: GET
+      params: {lastId: 200, offset: 5}
+      url: /blog/of/follow
+    expected:
+      response: {}
+      status_code: 200
+get_follow_feed_normal_with_lastId:
+  allure:
+    description: 验证传入lastId参数时，接口能正确返回后续的Feed流数据
+    epic: 博客系统
+    feature: 关注模块
+    pytest_mark: regression
+    story: 获取关注推送
+    tag: [正常场景, 分页测试]
+    title: 获取关注推送-正常场景-指定lastId参数
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: GET
+      params: {lastId: 100}
+      url: /blog/of/follow
+    expected:
+      response: {}
+      status_code: 200
+get_follow_feed_normal_with_offset:
+  allure:
+    description: 验证传入offset参数时，接口能正确返回偏移后的Feed流数据
+    epic: 博客系统
+    feature: 关注模块
+    pytest_mark: regression
+    story: 获取关注推送
+    tag: [正常场景, 分页测试]
+    title: 获取关注推送-正常场景-指定offset参数
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: GET
+      params: {offset: 10}
+      url: /blog/of/follow
+    expected:
+      response: {}
+      status_code: 200
+get_follow_feed_normal_without_params:
+  allure:
+    description: 验证不传任何分页参数时，接口能正常返回关注用户的探店笔记Feed流数据
+    epic: 博客系统
+    feature: 关注模块
+    pytest_mark: smoke
+    story: 获取关注推送
+    tag: [正常场景, 冒烟用例]
+    title: 获取关注推送-正常场景-无参数请求
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: GET
+      params: {}
+      url: /blog/of/follow
+    expected:
+      response: {}
+      status_code: 400

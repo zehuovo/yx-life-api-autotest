@@ -1,0 +1,98 @@
+query_note_detail_normal_valid_id:
+  allure:
+    title: 查询笔记详情-正常场景-有效ID查询成功
+    description: 验证使用有效的笔记ID查询详情，接口能正常返回笔记的完整信息
+    epic: 探店笔记系统
+    feature: 笔记查询模块
+    story: 查询笔记详情
+    tag: [正常场景, 冒烟用例]
+    pytest_mark: smoke
+  steps:
+    request:
+      method: GET
+      url: /blog/4
+      headers: {}
+      params: {}
+      json: {}
+    expected:
+      status_code: 200
+      response:
+        data:
+          required_fields: [id, shopId, title, images]
+        success: true
+query_note_detail_abnormal_nonexistent_id:
+  allure:
+    title: 查询笔记详情-异常场景-不存在的ID查询
+    description: 验证使用不存在的笔记ID查询详情
+    epic: 探店笔记系统
+    feature: 笔记查询模块
+    story: 查询笔记详情
+    tag: [异常场景]
+    pytest_mark: regression
+  steps:
+    request:
+      method: GET
+      url: /blog/99999
+      headers: {}
+      params: {}
+      json: {}
+    expected:
+      status_code: 200
+      response: {}
+query_note_detail_abnormal_invalid_id_type:
+  allure:
+    title: 查询笔记详情-异常场景-无效ID类型
+    description: 验证使用字符串类型的ID查询详情
+    epic: 探店笔记系统
+    feature: 笔记查询模块
+    story: 查询笔记详情
+    tag: [异常场景, 参数校验]
+    pytest_mark: regression
+  steps:
+    request:
+      method: GET
+      url: /blog/abc
+      headers: {}
+      params: {}
+      json: {}
+    expected:
+      status_code: 200
+      response: {}
+query_note_detail_boundary_id_zero:
+  allure:
+    title: 查询笔记详情-边界场景-ID为0
+    description: 验证使用ID=0查询详情
+    epic: 探店笔记系统
+    feature: 笔记查询模块
+    story: 查询笔记详情
+    tag: [边界场景]
+    pytest_mark: regression
+  steps:
+    request:
+      method: GET
+      url: /blog/0
+      headers: {}
+      params: {}
+      json: {}
+    expected:
+      status_code: 200
+      response: {}
+query_note_detail_boundary_id_negative:
+  allure:
+    title: 查询笔记详情-边界场景-ID为负数
+    description: 验证使用负数的ID查询详情
+    epic: 探店笔记系统
+    feature: 笔记查询模块
+    story: 查询笔记详情
+    tag: [边界场景]
+    pytest_mark: regression
+  steps:
+    request:
+      method: GET
+      url: /blog/-1
+      headers: {}
+      params: {}
+      json: {}
+    expected:
+      status_code: 200
+      response: {}

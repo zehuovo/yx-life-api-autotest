@@ -1,0 +1,133 @@
+user_follow_normal_follow_user:
+  allure:
+    title: 关注用户-正常场景-关注指定用户
+    description: 验证使用正确的用户ID和关注参数，能够成功关注指定用户
+    epic: 用户中心系统
+    feature: 用户关系模块
+    story: 关注/取消关注用户
+    tag: [正常场景, 冒烟用例]
+    pytest_mark: smoke
+  steps:
+    request:
+      method: PUT
+      url: /follow/1/true
+      headers: {}
+      params: {}
+      json: {}
+    expected:
+      status_code: 200
+      response: {}
+user_follow_normal_unfollow_user:
+  allure:
+    title: 取消关注用户-正常场景-取消关注指定用户
+    description: 验证使用正确的用户ID和取消关注参数，能够成功取消关注指定用户
+    epic: 用户中心系统
+    feature: 用户关系模块
+    story: 关注/取消关注用户
+    tag: [正常场景, 冒烟用例]
+    pytest_mark: smoke
+  steps:
+    request:
+      method: PUT
+      url: /follow/1/false
+      headers: {}
+      params: {}
+      json: {}
+    expected:
+      status_code: 200
+      response: {}
+user_follow_abnormal_invalid_user_id:
+  allure:
+    title: 关注用户-异常场景-无效的用户ID
+    description: 验证使用不存在的用户ID关注用户
+    epic: 用户中心系统
+    feature: 用户关系模块
+    story: 关注/取消关注用户
+    tag: [异常场景, 参数校验]
+    pytest_mark: regression
+  steps:
+    request:
+      method: PUT
+      url: /follow/99999/true
+      headers: {}
+      params: {}
+      json: {}
+    expected:
+      status_code: 200
+      response: {}
+user_follow_abnormal_missing_user_id:
+  allure:
+    title: 关注用户-异常场景-缺少用户ID
+    description: 验证请求路径中缺少用户ID参数
+    epic: 用户中心系统
+    feature: 用户关系模块
+    story: 关注/取消关注用户
+    tag: [异常场景, 参数校验]
+    pytest_mark: regression
+  steps:
+    request:
+      method: PUT
+      url: /follow//true
+      headers: {}
+      params: {}
+      json: {}
+    expected:
+      status_code: 404
+      response: {}
+user_follow_abnormal_invalid_followed_type:
+  allure:
+    title: 关注用户-异常场景-关注参数类型错误
+    description: 验证关注参数传入非布尔值
+    epic: 用户中心系统
+    feature: 用户关系模块
+    story: 关注/取消关注用户
+    tag: [异常场景, 参数校验]
+    pytest_mark: regression
+  steps:
+    request:
+      method: PUT
+      url: /follow/1/abc
+      headers: {}
+      params: {}
+      json: {}
+    expected:
+      status_code: 200
+      response: {}
+user_follow_boundary_user_id_zero:
+  allure:
+    title: 关注用户-边界场景-用户ID为0
+    description: 验证用户ID为0时，接口的边界处理能力
+    epic: 用户中心系统
+    feature: 用户关系模块
+    story: 关注/取消关注用户
+    tag: [边界场景, 边界值测试]
+    pytest_mark: regression
+  steps:
+    request:
+      method: PUT
+      url: /follow/0/true
+      headers: {}
+      params: {}
+      json: {}
+    expected:
+      status_code: 200
+      response: {}
+user_follow_boundary_user_id_negative:
+  allure:
+    title: 关注用户-边界场景-用户ID为负数
+    description: 验证用户ID为负数时，接口的边界处理能力
+    epic: 用户中心系统
+    feature: 用户关系模块
+    story: 关注/取消关注用户
+    tag: [边界场景, 边界值测试]
+    pytest_mark: regression
+  steps:
+    request:
+      method: PUT
+      url: /follow/-1/true
+      headers: {}
+      params: {}
+      json: {}
+    expected:
+      status_code: 200
+      response: {}

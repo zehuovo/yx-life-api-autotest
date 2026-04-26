@@ -1,0 +1,99 @@
+user_info_normal_query_success:
+  allure:
+    description: 验证使用正确的用户ID查询用户详情，能正常返回用户昵称、头像等信息
+    epic: 用户中心系统
+    feature: 用户信息模块
+    pytest_mark: smoke
+    story: 查询用户详情
+    tag: [正常场景, 冒烟用例]
+    title: 查询用户详情-正常场景-查询成功
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: GET
+      params: {}
+      url: /user/info/1
+    extract: {}
+    expected:
+      response:
+        data:
+          required_fields: [id, nickName, icon]
+        success: true
+      status_code: 200
+user_info_abnormal_id_is_string:
+  allure:
+    description: 验证ID参数传入字符串类型
+    epic: 用户中心系统
+    feature: 用户信息模块
+    pytest_mark: regression
+    story: 查询用户详情
+    tag: [异常场景, 参数校验]
+    title: 查询用户详情-异常场景-ID参数为字符串
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: GET
+      params: {}
+      url: /user/info/abc
+    expected:
+      response: {}
+      status_code: 200
+user_info_abnormal_id_not_exist:
+  allure:
+    description: 验证使用不存在的用户ID查询用户详情
+    epic: 用户中心系统
+    feature: 用户信息模块
+    pytest_mark: regression
+    story: 查询用户详情
+    tag: [异常场景]
+    title: 查询用户详情-异常场景-用户ID不存在
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: GET
+      params: {}
+      url: /user/info/99999
+    expected:
+      response: {}
+      status_code: 200
+user_info_boundary_id_negative:
+  allure:
+    description: 验证ID参数为负数时
+    epic: 用户中心系统
+    feature: 用户信息模块
+    pytest_mark: regression
+    story: 查询用户详情
+    tag: [边界场景]
+    title: 查询用户详情-边界场景-ID为负数
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: GET
+      params: {}
+      url: /user/info/-1
+    expected:
+      response: {}
+      status_code: 200
+user_info_boundary_id_zero:
+  allure:
+    description: 验证ID参数为0时
+    epic: 用户中心系统
+    feature: 用户信息模块
+    pytest_mark: regression
+    story: 查询用户详情
+    tag: [边界场景]
+    title: 查询用户详情-边界场景-ID为0
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: GET
+      params: {}
+      url: /user/info/0
+    expected:
+      response: {}
+      status_code: 200

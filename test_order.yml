@@ -1,0 +1,3 @@
+steps:
+  request: {url: /test, method: GET}
+  expected: {status_code: 200}

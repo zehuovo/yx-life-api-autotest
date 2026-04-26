@@ -1,0 +1,9 @@
+INFO     HuZe:api_utils.py:86 ==================================================查询用户笔记-异常场景-用户ID不存在===================================================
+INFO     HuZe:api_utils.py:68 1.正在发送请求
+INFO     HuZe:api_utils.py:69 {'method': 'GET', 'url': '/blog/of/user', 'headers': {}, 'params': {'id': 99999}, 'json': {}}
+INFO     HuZe:api_utils.py:72 2.正在断言响应
+INFO     HuZe:api_utils.py:73 {'status_code': 200, 'response': {'data': {'assert': {'eq': {}, 'type': {'success': 'bool'}}}, 'success': False}}
+INFO     HuZe:response_checker.py:143 resp.json: {'success': True, 'data': []}
+ERROR    HuZe:response_checker.py:183 共 2 个断言失败:
+  - 响应字段: 期望 success=False, 实际 True
+  - [type] 字段不存在: data.success

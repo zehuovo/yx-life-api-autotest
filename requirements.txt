@@ -8,4 +8,4 @@ cryptography
 python-dotenv
 jsonpath
 pytest-rerunfailures
-OpenAI
+openai

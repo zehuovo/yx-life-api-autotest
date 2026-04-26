@@ -1,0 +1,7 @@
+INFO     HuZe:api_utils.py:86 ===================================================查询笔记详情-边界场景-ID为负数====================================================
+INFO     HuZe:api_utils.py:68 1.正在发送请求
+INFO     HuZe:api_utils.py:69 {'method': 'GET', 'url': '/blog/-1', 'headers': {}, 'params': {}, 'json': {}}
+INFO     HuZe:api_utils.py:72 2.正在断言响应
+INFO     HuZe:api_utils.py:73 {'status_code': 200, 'response': {}}
+INFO     HuZe:response_checker.py:143 resp.json: {'success': False, 'errorMsg': '笔记不存在！'}
+INFO     HuZe:response_checker.py:186 所有断言通过

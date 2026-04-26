@@ -1,0 +1,9 @@
+INFO     HuZe:api_utils.py:86 ========================================================发布笔记-未登录========================================================
+INFO     HuZe:api_utils.py:68 1.正在发送请求
+INFO     HuZe:api_utils.py:69 {'method': 'POST', 'url': '/blog', 'json': {'shopId': 1, 'title': '测试未登录发布ZvLEMR', 'images': '/imgs/blogs/blog1.jpg', 'content': '未登录发布的测试内容'}, 'headers': {}}
+INFO     HuZe:api_utils.py:72 2.正在断言响应
+INFO     HuZe:api_utils.py:73 {'status_code': 401, 'response': {'success': False}}
+INFO     HuZe:response_checker.py:143 resp.json: {'success': True, 'data': 31}
+ERROR    HuZe:response_checker.py:183 共 2 个断言失败:
+  - 状态码: 期望 401, 实际 200
+  - 响应字段: 期望 success=False, 实际 True

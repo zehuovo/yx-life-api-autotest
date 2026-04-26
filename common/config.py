@@ -16,4 +16,7 @@ API_KEY = os.getenv("API_KEY")
 # Ai接口URL
 AI_URL = os.getenv("AI_URL")
 
+# Ai模型名称
+AI_MODEL = os.getenv("AI_MODEL", "deepseek-chat")
+
 

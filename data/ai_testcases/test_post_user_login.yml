@@ -1,0 +1,96 @@
+user_login_abnormal_wrong_code:
+  allure:
+    description: 验证用户使用正确的手机号和错误的验证码登录，接口返回失败信息
+    epic: 用户中心系统
+    feature: 用户认证模块
+    pytest_mark: login
+    story: 手机验证码登录
+    tag: [异常场景]
+    title: 用户登录-异常场景-错误的验证码登录失败
+  steps:
+    request:
+      headers: {}
+      json: {code: '000000', phone: '138${random_int}'}
+      method: POST
+      params: {}
+      url: /user/login
+    expected:
+      response: {success: false}
+      status_code: 200
+user_login_abnormal_empty_phone:
+  allure:
+    description: 验证用户传入空字符串手机号时，接口返回参数格式错误信息
+    epic: 用户中心系统
+    feature: 用户认证模块
+    pytest_mark: login
+    story: 手机验证码登录
+    tag: [异常场景, 边界值测试]
+    title: 用户登录-异常场景-手机号为空字符串登录失败
+  steps:
+    request:
+      headers: {}
+      json: {code: '123456', phone: ''}
+      method: POST
+      params: {}
+      url: /user/login
+    expected:
+      response: {}
+      status_code: 200
+user_login_abnormal_missing_code:
+  allure:
+    description: 验证用户不传验证码参数时，接口返回参数缺失的错误信息
+    epic: 用户中心系统
+    feature: 用户认证模块
+    pytest_mark: login
+    story: 手机验证码登录
+    tag: [异常场景, 参数校验]
+    title: 用户登录-异常场景-缺少验证码参数登录失败
+  steps:
+    request:
+      headers: {}
+      json: {phone: '138${random_int}'}
+      method: POST
+      params: {}
+      url: /user/login
+    expected:
+      response: {}
+      status_code: 200
+user_login_abnormal_missing_phone:
+  allure:
+    description: 验证用户不传手机号参数时，接口返回参数缺失的错误信息
+    epic: 用户中心系统
+    feature: 用户认证模块
+    pytest_mark: login
+    story: 手机验证码登录
+    tag: [异常场景, 参数校验]
+    title: 用户登录-异常场景-缺少手机号参数登录失败
+  steps:
+    request:
+      headers: {}
+      json: {code: '123456'}
+      method: POST
+      params: {}
+      url: /user/login
+    expected:
+      response: {}
+      status_code: 200
+user_login_normal_correct_phone_code:
+  allure:
+    description: 验证用户使用正确的手机号和验证码登录，能正常返回JWT token
+    epic: 用户中心系统
+    feature: 用户认证模块
+    pytest_mark: smoke
+    story: 手机验证码登录
+    tag: [正常场景, 冒烟用例]
+    title: 用户登录-正常场景-正确手机号和验证码登录成功
+  steps:
+    request:
+      headers: {}
+      json: {code: '123456', phone: '138${random_int}'}
+      method: POST
+      params: {}
+      url: /user/login
+    extract: {}
+    expected:
+      response: {success: false}
+      status_code: 200

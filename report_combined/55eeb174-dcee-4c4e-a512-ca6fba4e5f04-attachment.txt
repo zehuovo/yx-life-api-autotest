@@ -1,0 +1,8 @@
+INFO     HuZe:api_utils.py:86 ===================================================点赞探店笔记-正常场景-取消点赞成功===================================================
+INFO     HuZe:api_utils.py:68 1.正在发送请求
+INFO     HuZe:api_utils.py:69 {'method': 'PUT', 'url': '/blog/like/1', 'headers': {}, 'params': {}, 'json': {}}
+INFO     HuZe:api_utils.py:72 2.正在断言响应
+INFO     HuZe:api_utils.py:73 {'status_code': 200, 'response': {'data': {}, 'success': True}}
+INFO     HuZe:response_checker.py:143 resp.json: {'success': True}
+INFO     HuZe:response_checker.py:186 所有断言通过
+INFO     HuZe:api_utils.py:76 3.正在提取变量

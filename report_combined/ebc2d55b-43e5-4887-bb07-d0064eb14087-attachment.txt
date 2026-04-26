@@ -1,0 +1,8 @@
+INFO     HuZe:api_utils.py:86 =================================================新增优惠券-正常场景-所有字段（含秒杀信息）=================================================
+INFO     HuZe:api_utils.py:68 1.正在发送请求
+INFO     HuZe:api_utils.py:69 {'method': 'POST', 'url': '/voucher', 'headers': {}, 'params': {}, 'json': {'shopId': 1, 'title': '秒杀优惠券_1777125911', 'subtitle': '限时抢购', 'rules': '每人限领1张', 'payValue': 500, 'actualValue': 2000, 'type': 2, 'stock': 100, 'beginTime': '2026-03-01 00:00:00', 'endTime': '2026-03-31 23:59:59'}}
+INFO     HuZe:api_utils.py:72 2.正在断言响应
+INFO     HuZe:api_utils.py:73 {'status_code': 200, 'response': {'data': {'required_fields': ['id']}, 'success': True}}
+INFO     HuZe:response_checker.py:143 resp.json: {'success': False, 'errorMsg': '服务器异常'}
+ERROR    HuZe:response_checker.py:183 共 1 个断言失败:
+  - 响应字段: 期望 success=True, 实际 False

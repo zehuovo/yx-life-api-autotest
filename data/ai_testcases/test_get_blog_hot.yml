@@ -1,0 +1,90 @@
+blog_hot_abnormal_invalid_page_param:
+  allure:
+    description: 验证传入负数页码参数时，接口能正确处理
+    epic: 博客系统
+    feature: 笔记模块
+    pytest_mark: regression
+    story: 查询热门笔记
+    tag: [异常场景, 边界值测试]
+    title: 查询热门笔记-异常场景-页码参数为负数
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: GET
+      params: {current: -1}
+      url: /blog/hot
+    extract: {}
+    expected:
+      response: {}
+      status_code: 200
+blog_hot_abnormal_non_numeric_page_param:
+  allure:
+    description: 验证传入非数字类型的页码参数时，接口能正确处理
+    epic: 博客系统
+    feature: 笔记模块
+    pytest_mark: regression
+    story: 查询热门笔记
+    tag: [异常场景, 参数类型错误]
+    title: 查询热门笔记-异常场景-页码参数为非数字
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: GET
+      params: {current: abc}
+      url: /blog/hot
+    extract: {}
+    expected:
+      response: {}
+      status_code: 200
+blog_hot_normal_no_page_param:
+  allure:
+    description: 验证不传页码参数时，接口能正常返回笔记列表数据，默认返回第一页数据
+    epic: 博客系统
+    feature: 笔记模块
+    pytest_mark: regression
+    story: 查询热门笔记
+    tag: [正常场景, 边界值测试]
+    title: 查询热门笔记-正常场景-不传页码参数
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: GET
+      params: {}
+      url: /blog/hot
+    extract: {}
+    expected:
+      response:
+        data:
+          list_check:
+            records:
+              object_required_items: [id, shopId, userId, title]
+        success: true
+      status_code: 200
+blog_hot_normal_page_query:
+  allure:
+    description: 验证分页查询热门探店笔记列表接口，传入有效页码参数，能正常返回笔记列表数据
+    epic: 博客系统
+    feature: 笔记模块
+    pytest_mark: smoke
+    story: 查询热门笔记
+    tag: [正常场景, 冒烟用例]
+    title: 查询热门笔记-正常场景-分页查询成功
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: GET
+      params: {current: 1}
+      url: /blog/hot
+    extract: {}
+    expected:
+      response:
+        data:
+          list_check:
+            records:
+              object_required_items: [id, shopId, userId, title]
+        success: true
+      status_code: 200

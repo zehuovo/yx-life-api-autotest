@@ -1,0 +1,8 @@
+INFO     HuZe:api_utils.py:86 =================================================查询商铺详情-异常场景-空商铺ID查询失败==================================================
+INFO     HuZe:api_utils.py:68 1.正在发送请求
+INFO     HuZe:api_utils.py:69 {'method': 'GET', 'url': '/shop/', 'headers': {}, 'params': {}, 'json': {}}
+INFO     HuZe:api_utils.py:72 2.正在断言响应
+INFO     HuZe:api_utils.py:73 {'status_code': 200, 'response': {}}
+INFO     HuZe:response_checker.py:143 resp.json: {'timestamp': '2026-04-25T14:05:11.170+00:00', 'status': 405, 'error': 'Method Not Allowed', 'message': '', 'path': '/shop/'}
+ERROR    HuZe:response_checker.py:183 共 1 个断言失败:
+  - 状态码: 期望 200, 实际 405

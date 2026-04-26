@@ -7,7 +7,7 @@ from common.response_checker import ResponseChecker
 from utils.allure_utils import AllureUtils
 from utils.data_utils import extract_yaml, resolve_dynamic_params
 
-logger = logging.getLogger("Hsyuan")
+logger = logging.getLogger("HuZe")
 
 
 class ApiRunner:

@@ -1,0 +1,45 @@
+# ============================================
+# 悦享生活服务平台 - 优惠券模块测试用例数据
+# ============================================
+
+get_voucher_list:
+  allure:
+    title: "查询商铺优惠券列表"
+    description: "测试根据商铺ID查询优惠券列表"
+    epic: "悦享生活服务平台"
+    feature: "优惠券模块"
+    story: "优惠券查询"
+    tag: ["优惠券", "接口测试"]
+    pytest_mark: "api"
+
+  steps:
+    request:
+      method: "GET"
+      url: "/voucher/list/1"
+      headers: {}
+
+    expected:
+      status_code: 200
+      response:
+        success: true
+
+get_voucher_not_found_shop:
+  allure:
+    title: "查询不存在的商铺优惠券"
+    description: "测试查询不存在的商铺ID的优惠券列表"
+    epic: "悦享生活服务平台"
+    feature: "优惠券模块"
+    story: "优惠券查询"
+    tag: ["优惠券", "接口测试"]
+    pytest_mark: "api"
+
+  steps:
+    request:
+      method: "GET"
+      url: "/voucher/list/99999"
+      headers: {}
+
+    expected:
+      status_code: 200
+      response:
+        success: true

@@ -1,0 +1,100 @@
+blog_like_normal_like:
+  allure:
+    description: 验证用户对探店笔记进行点赞操作，接口正常返回成功标识
+    epic: 探店笔记系统
+    feature: 笔记互动模块
+    pytest_mark: smoke
+    story: 点赞探店笔记
+    tag: [正常场景, 冒烟用例]
+    title: 点赞探店笔记-正常场景-点赞成功
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: PUT
+      params: {}
+      url: /blog/like/1
+    extract: {}
+    expected:
+      response: {}
+      status_code: 200
+blog_like_normal_cancel_like:
+  allure:
+    description: 验证用户对已点赞的探店笔记进行取消点赞操作
+    epic: 探店笔记系统
+    feature: 笔记互动模块
+    pytest_mark: regression
+    story: 点赞探店笔记
+    tag: [正常场景, 回归用例]
+    title: 点赞探店笔记-正常场景-取消点赞成功
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: PUT
+      params: {}
+      url: /blog/like/1
+    extract: {}
+    expected:
+      response: {}
+      status_code: 200
+blog_like_abnormal_invalid_id:
+  allure:
+    description: 验证用户对不存在的笔记ID进行点赞操作
+    epic: 探店笔记系统
+    feature: 笔记互动模块
+    pytest_mark: regression
+    story: 点赞探店笔记
+    tag: [异常场景, 边界值测试]
+    title: 点赞探店笔记-异常场景-无效笔记ID
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: PUT
+      params: {}
+      url: /blog/like/99999
+    extract: {}
+    expected:
+      response: {}
+      status_code: 200
+blog_like_abnormal_negative_id:
+  allure:
+    description: 验证用户对负数笔记ID进行点赞操作
+    epic: 探店笔记系统
+    feature: 笔记互动模块
+    pytest_mark: regression
+    story: 点赞探店笔记
+    tag: [异常场景, 边界值测试]
+    title: 点赞探店笔记-异常场景-负数笔记ID
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: PUT
+      params: {}
+      url: /blog/like/-1
+    extract: {}
+    expected:
+      response: {}
+      status_code: 200
+blog_like_abnormal_zero_id:
+  allure:
+    description: 验证用户对ID为0的笔记进行点赞操作
+    epic: 探店笔记系统
+    feature: 笔记互动模块
+    pytest_mark: regression
+    story: 点赞探店笔记
+    tag: [异常场景, 边界值测试]
+    title: 点赞探店笔记-异常场景-零值笔记ID
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: PUT
+      params: {}
+      url: /blog/like/0
+    extract: {}
+    expected:
+      response: {}
+      status_code: 200

@@ -1,0 +1,22 @@
+user_sign_normal_success:
+  allure:
+    title: 用户签到-正常场景-签到成功
+    description: 验证用户签到接口正常调用，返回签到成功状态
+    epic: 用户中心系统
+    feature: 用户签到模块
+    story: 用户签到
+    tag:
+    - 正常场景
+    - 冒烟用例
+    pytest_mark: smoke
+  steps:
+    request:
+      method: POST
+      url: /user/sign
+      headers: {}
+      params: {}
+      json: {}
+    expected:
+      status_code: 200
+      response:
+        success: true

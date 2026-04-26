@@ -1,0 +1,77 @@
+query_my_notes_normal_pagination:
+  allure:
+    description: 验证已登录用户分页查询自己的探店笔记列表，能正常返回数据
+    epic: 博客系统
+    feature: 笔记管理模块
+    pytest_mark: smoke
+    story: 查询我的笔记
+    tag: [正常场景, 冒烟用例]
+    title: 查询我的笔记-正常场景-分页查询成功
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: GET
+      params: {current: 1}
+      url: /blog/of/me
+    extract: {}
+    expected:
+      response: {success: true}
+      status_code: 200
+query_my_notes_abnormal_invalid_param:
+  allure:
+    description: 验证传入非数字类型的页码参数
+    epic: 博客系统
+    feature: 笔记管理模块
+    pytest_mark: regression
+    story: 查询我的笔记
+    tag: [异常场景, 参数校验]
+    title: 查询我的笔记-异常场景-参数类型错误
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: GET
+      params: {current: abc}
+      url: /blog/of/me
+    expected:
+      response: {}
+      status_code: 200
+query_my_notes_boundary_min_page:
+  allure:
+    description: 验证传入最小页码1，接口正常返回数据
+    epic: 博客系统
+    feature: 笔记管理模块
+    pytest_mark: regression
+    story: 查询我的笔记
+    tag: [边界场景, 分页测试]
+    title: 查询我的笔记-边界场景-最小页码
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: GET
+      params: {current: 1}
+      url: /blog/of/me
+    expected:
+      response: {success: true}
+      status_code: 200
+query_my_notes_normal_empty_page:
+  allure:
+    description: 验证用户查询自己的笔记，当无数据时返回空列表
+    epic: 博客系统
+    feature: 笔记管理模块
+    pytest_mark: regression
+    story: 查询我的笔记
+    tag: [正常场景, 边界值测试]
+    title: 查询我的笔记-正常场景-空列表查询
+  steps:
+    request:
+      headers: {}
+      json: {}
+      method: GET
+      params: {current: 9999}
+      url: /blog/of/me
+    expected:
+      response: {success: true}
+      status_code: 200

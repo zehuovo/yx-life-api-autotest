@@ -1,7 +1,7 @@
 import re
 import logging
 
-logger = logging.getLogger("Hsyuan")
+logger = logging.getLogger("HuZe")
 
 TYPE_MAP = {
     "str": str, "int": int, "float": float,
@@ -135,6 +135,10 @@ class ResponseChecker:
             json_data = self.resp.json()
         except Exception:
             json_data = {}
+
+        # 确保 json_data 是 dict（API 可能返回 int/string）
+        if not isinstance(json_data, dict):
+            json_data = {"_raw": json_data}
 
         logger.info(f"resp.json: {json_data}")
 

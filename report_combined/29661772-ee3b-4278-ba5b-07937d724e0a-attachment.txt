@@ -1,0 +1,7 @@
+INFO     HuZe:api_utils.py:86 ==================================================取消关注用户-正常场景-取消关注指定用户==================================================
+INFO     HuZe:api_utils.py:68 1.正在发送请求
+INFO     HuZe:api_utils.py:69 {'method': 'PUT', 'url': '/follow/1/false', 'headers': {}, 'params': {}, 'json': {}}
+INFO     HuZe:api_utils.py:72 2.正在断言响应
+INFO     HuZe:api_utils.py:73 {'status_code': 200, 'response': {'data': {}, 'success': True}}
+INFO     HuZe:response_checker.py:143 resp.json: {'success': True}
+INFO     HuZe:response_checker.py:186 所有断言通过

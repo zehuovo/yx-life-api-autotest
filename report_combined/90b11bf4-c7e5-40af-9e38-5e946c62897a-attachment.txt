@@ -1,0 +1,8 @@
+INFO     HuZe:api_utils.py:86 ==================================================查询热门笔记-异常场景-页码参数为非数字==================================================
+INFO     HuZe:api_utils.py:68 1.正在发送请求
+INFO     HuZe:api_utils.py:69 {'method': 'GET', 'url': '/blog/hot', 'headers': {}, 'params': {'current': 'abc'}, 'json': {}}
+INFO     HuZe:api_utils.py:72 2.正在断言响应
+INFO     HuZe:api_utils.py:73 {'status_code': 200, 'response': {'success': False}}
+INFO     HuZe:response_checker.py:143 resp.json: {'success': False, 'errorMsg': '服务器异常'}
+INFO     HuZe:response_checker.py:186 所有断言通过
+INFO     HuZe:api_utils.py:76 3.正在提取变量

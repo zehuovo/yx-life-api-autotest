@@ -1,0 +1,7 @@
+INFO     HuZe:api_utils.py:86 ===================================================新增优惠券-边界场景-空字符串标题====================================================
+INFO     HuZe:api_utils.py:68 1.正在发送请求
+INFO     HuZe:api_utils.py:69 {'method': 'POST', 'url': '/voucher', 'headers': {}, 'params': {}, 'json': {'shopId': 1, 'title': '', 'payValue': 1000, 'actualValue': 1500, 'type': 1}}
+INFO     HuZe:api_utils.py:72 2.正在断言响应
+INFO     HuZe:api_utils.py:73 {'status_code': 200, 'response': {}}
+INFO     HuZe:response_checker.py:143 resp.json: {'success': True, 'data': 24}
+INFO     HuZe:response_checker.py:186 所有断言通过

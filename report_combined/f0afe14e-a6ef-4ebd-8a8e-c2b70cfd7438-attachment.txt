@@ -1,0 +1,7 @@
+INFO     HuZe:api_utils.py:86 =============================================查询商铺附近信息-正常场景-按类型ID和经纬度查询附近商铺==============================================
+INFO     HuZe:api_utils.py:68 1.正在发送请求
+INFO     HuZe:api_utils.py:69 {'method': 'GET', 'url': '/shop/of/type', 'headers': {}, 'params': {'typeId': 1, 'x': 116.397428, 'y': 39.90923}, 'json': {}}
+INFO     HuZe:api_utils.py:72 2.正在断言响应
+INFO     HuZe:api_utils.py:73 {'status_code': 200, 'response': {'data': {}, 'success': True}}
+INFO     HuZe:response_checker.py:143 resp.json: {'success': True, 'data': []}
+INFO     HuZe:response_checker.py:186 所有断言通过

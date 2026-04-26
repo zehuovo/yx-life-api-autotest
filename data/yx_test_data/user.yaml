@@ -1,0 +1,235 @@
+# ============================================
+# 悦享生活服务平台 - 用户模块测试用例数据
+# ============================================
+
+send_code_success:
+  allure:
+    title: "发送验证码成功测试用例"
+    description: "测试发送手机验证码接口，使用正确的手机号格式"
+    epic: "悦享生活服务平台"
+    feature: "用户模块"
+    story: "发送验证码"
+    tag: ["用户", "接口测试"]
+    pytest_mark: "api"
+
+  steps:
+    request:
+      method: "POST"
+      url: "/user/code"
+      params:
+        phone: "13800138000"
+      headers: {}
+
+    expected:
+      status_code: 200
+      response:
+        success: true
+
+send_code_invalid_phone:
+  allure:
+    title: "发送验证码-手机号格式错误"
+    description: "测试发送验证码接口，使用错误的手机号格式"
+    epic: "悦享生活服务平台"
+    feature: "用户模块"
+    story: "发送验证码"
+    tag: ["用户", "接口测试"]
+    pytest_mark: "api"
+
+  steps:
+    request:
+      method: "POST"
+      url: "/user/code"
+      params:
+        phone: "12345"
+      headers: {}
+
+    expected:
+      status_code: 200
+      response:
+        success: false
+        errorMsg: "手机号格式错误！"
+
+login_wrong_code:
+  allure:
+    title: "登录接口-验证码错误"
+    description: "测试登录接口，使用错误的验证码"
+    epic: "悦享生活服务平台"
+    feature: "用户模块"
+    story: "登录"
+    tag: ["用户", "接口测试"]
+    pytest_mark: "api"
+
+  steps:
+    request:
+      method: "POST"
+      url: "/user/login"
+      json:
+        phone: "13800138000"
+        code: "000000"
+      headers: {}
+
+    expected:
+      status_code: 200
+      response:
+        success: false
+        errorMsg: "验证码错误"
+
+login_invalid_phone:
+  allure:
+    title: "登录接口-手机号格式错误"
+    description: "测试登录接口，使用错误的手机号格式"
+    epic: "悦享生活服务平台"
+    feature: "用户模块"
+    story: "登录"
+    tag: ["用户", "接口测试"]
+    pytest_mark: "api"
+
+  steps:
+    request:
+      method: "POST"
+      url: "/user/login"
+      json:
+        phone: "abc"
+        code: "123456"
+      headers: {}
+
+    expected:
+      status_code: 200
+      response:
+        success: false
+        errorMsg: "手机号格式错误！"
+
+get_user_info:
+  allure:
+    title: "查询用户信息"
+    description: "测试通过用户ID查询用户信息"
+    epic: "悦享生活服务平台"
+    feature: "用户模块"
+    story: "用户信息"
+    tag: ["用户", "接口测试"]
+    pytest_mark: "api"
+
+  steps:
+    request:
+      method: "GET"
+      url: "/user/1"
+      headers: {}
+
+    expected:
+      status_code: 200
+      response:
+        success: true
+        data:
+          required_fields: ["id", "nickName", "icon"]
+
+user_sign:
+  allure:
+    title: "用户签到功能"
+    description: "测试用户签到接口"
+    epic: "悦享生活服务平台"
+    feature: "用户模块"
+    story: "签到"
+    tag: ["用户", "接口测试"]
+    pytest_mark: "api"
+
+  steps:
+    request:
+      method: "POST"
+      url: "/user/sign"
+      headers: {}
+
+    expected:
+      status_code: 200
+      response:
+        success: true
+
+get_user_me:
+  allure:
+    title: "查询当前登录用户信息"
+    description: "测试获取当前登录用户的基本信息"
+    epic: "悦享生活服务平台"
+    feature: "用户模块"
+    story: "用户信息"
+    tag: ["用户", "接口测试"]
+    pytest_mark: "api"
+
+  steps:
+    request:
+      method: "GET"
+      url: "/user/me"
+      headers: {}
+
+    expected:
+      status_code: 200
+      response:
+        success: true
+        data:
+          required_fields: ["id", "nickName", "icon"]
+
+get_user_detail:
+  allure:
+    title: "查询指定用户详情信息"
+    description: "测试通过用户ID查询用户的详细信息（昵称、头像等）"
+    epic: "悦享生活服务平台"
+    feature: "用户模块"
+    story: "用户信息"
+    tag: ["用户", "接口测试"]
+    pytest_mark: "api"
+
+  steps:
+    request:
+      method: "GET"
+      url: "/user/info/1"
+      headers: {}
+
+    expected:
+      status_code: 200
+      response:
+        success: true
+        data:
+          required_fields: ["id", "nickName", "icon"]
+
+send_code_empty_phone:
+  allure:
+    title: "发送验证码-手机号为空"
+    description: "测试发送验证码时手机号为空，期望返回错误"
+    epic: "悦享生活服务平台"
+    feature: "用户模块"
+    story: "发送验证码"
+    tag: ["用户", "接口测试"]
+    pytest_mark: "api"
+
+  steps:
+    request:
+      method: "POST"
+      url: "/user/code"
+      params:
+        phone: ""
+      headers: {}
+
+    expected:
+      status_code: 200
+      response:
+        success: false
+        errorMsg: "手机号不能为空"
+
+get_sign_count:
+  allure:
+    title: "查询用户签到次数"
+    description: "测试获取当前用户的签到累计次数"
+    epic: "悦享生活服务平台"
+    feature: "用户模块"
+    story: "签到"
+    tag: ["用户", "接口测试"]
+    pytest_mark: "api"
+
+  steps:
+    request:
+      method: "GET"
+      url: "/user/sign/count"
+      headers: {}
+
+    expected:
+      status_code: 200
+      response:
+        success: true

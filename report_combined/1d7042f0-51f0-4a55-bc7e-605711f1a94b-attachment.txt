@@ -1,0 +1,8 @@
+INFO     HuZe:api_utils.py:86 ================================================用户登录-正常场景-正确手机号和验证码登录成功=================================================
+INFO     HuZe:api_utils.py:68 1.正在发送请求
+INFO     HuZe:api_utils.py:69 {'method': 'POST', 'url': '/user/login', 'headers': {}, 'params': {}, 'json': {'phone': '138407631', 'code': '123456'}}
+INFO     HuZe:api_utils.py:72 2.正在断言响应
+INFO     HuZe:api_utils.py:73 {'status_code': 200, 'response': {'data': {'required_fields': ['data']}, 'success': True}}
+INFO     HuZe:response_checker.py:143 resp.json: {'success': False, 'errorMsg': '手机号格式错误！'}
+ERROR    HuZe:response_checker.py:183 共 1 个断言失败:
+  - 响应字段: 期望 success=True, 实际 False

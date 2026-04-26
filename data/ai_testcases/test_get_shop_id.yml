@@ -1,0 +1,117 @@
+shop_detail_normal_valid_id:
+  allure:
+    title: 查询商铺详情-正常场景-有效商铺ID查询成功
+    description: 验证使用有效的商铺ID查询商铺详情，能正常返回商铺的详细信息
+    epic: 商铺管理系统
+    feature: 商铺查询模块
+    story: 查询商铺详情
+    tag: [正常场景, 冒烟用例]
+    pytest_mark: smoke
+  steps:
+    request:
+      method: GET
+      url: /shop/1
+      headers: {}
+      params: {}
+      json: {}
+    expected:
+      status_code: 200
+      response:
+        data:
+          required_fields: [id, name, typeId]
+        success: true
+shop_detail_abnormal_invalid_id:
+  allure:
+    title: 查询商铺详情-异常场景-无效商铺ID查询失败
+    description: 验证使用不存在的商铺ID查询商铺详情
+    epic: 商铺管理系统
+    feature: 商铺查询模块
+    story: 查询商铺详情
+    tag: [异常场景, 边界值测试]
+    pytest_mark: regression
+  steps:
+    request:
+      method: GET
+      url: /shop/99999
+      headers: {}
+      params: {}
+      json: {}
+    expected:
+      status_code: 200
+      response: {}
+shop_detail_abnormal_negative_id:
+  allure:
+    title: 查询商铺详情-异常场景-负数商铺ID查询失败
+    description: 验证使用负数商铺ID查询商铺详情
+    epic: 商铺管理系统
+    feature: 商铺查询模块
+    story: 查询商铺详情
+    tag: [异常场景, 边界值测试]
+    pytest_mark: regression
+  steps:
+    request:
+      method: GET
+      url: /shop/-1
+      headers: {}
+      params: {}
+      json: {}
+    expected:
+      status_code: 200
+      response: {}
+shop_detail_abnormal_zero_id:
+  allure:
+    title: 查询商铺详情-异常场景-零值商铺ID查询失败
+    description: 验证使用零值商铺ID查询商铺详情
+    epic: 商铺管理系统
+    feature: 商铺查询模块
+    story: 查询商铺详情
+    tag: [异常场景, 边界值测试]
+    pytest_mark: regression
+  steps:
+    request:
+      method: GET
+      url: /shop/0
+      headers: {}
+      params: {}
+      json: {}
+    expected:
+      status_code: 200
+      response: {}
+shop_detail_abnormal_non_numeric_id:
+  allure:
+    title: 查询商铺详情-异常场景-非数字商铺ID查询失败
+    description: 验证使用非数字类型的商铺ID查询商铺详情
+    epic: 商铺管理系统
+    feature: 商铺查询模块
+    story: 查询商铺详情
+    tag: [异常场景, 参数类型错误]
+    pytest_mark: regression
+  steps:
+    request:
+      method: GET
+      url: /shop/abc
+      headers: {}
+      params: {}
+      json: {}
+    expected:
+      status_code: 200
+      response: {}
+shop_detail_abnormal_empty_id:
+  allure:
+    title: 查询商铺详情-异常场景-空商铺ID查询失败
+    description: 验证使用空值的商铺ID查询商铺详情
+    epic: 商铺管理系统
+    feature: 商铺查询模块
+    story: 查询商铺详情
+    tag: [异常场景, 参数缺失]
+    pytest_mark: regression
+  steps:
+    request:
+      method: GET
+      url: /shop/
+      headers: {}
+      params: {}
+      json: {}
+    expected:
+      status_code: 405
+      response: {}

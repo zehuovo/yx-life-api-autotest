@@ -1,0 +1,9 @@
+INFO     HuZe:api_utils.py:86 ================================================查询当前登录用户-异常场景-携带无效token=================================================
+INFO     HuZe:api_utils.py:68 1.正在发送请求
+INFO     HuZe:api_utils.py:69 {'method': 'GET', 'url': '/user/me', 'headers': {'Authorization': 'Bearer invalid_token_example'}, 'params': {}, 'json': {}}
+INFO     HuZe:api_utils.py:72 2.正在断言响应
+INFO     HuZe:api_utils.py:73 {'status_code': 200, 'response': {'success': False}}
+INFO     HuZe:response_checker.py:143 resp.json: {}
+ERROR    HuZe:response_checker.py:183 共 2 个断言失败:
+  - 状态码: 期望 200, 实际 401
+  - 缺少响应字段: success

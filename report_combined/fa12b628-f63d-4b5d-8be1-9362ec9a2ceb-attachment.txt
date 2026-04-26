@@ -1,0 +1,13 @@
+INFO     HuZe:api_utils.py:86 =================================================查询用户笔记-正常场景-有效用户ID查询成功=================================================
+INFO     HuZe:api_utils.py:68 1.正在发送请求
+INFO     HuZe:api_utils.py:69 {'method': 'GET', 'url': '/blog/of/user', 'headers': {}, 'params': {'id': 1, 'current': 1}, 'json': {}}
+INFO     HuZe:api_utils.py:72 2.正在断言响应
+INFO     HuZe:api_utils.py:73 {'status_code': 200, 'response': {'data': {'required_fields': ['records', 'total', 'size', 'current', 'pages'], 'list_check': {'records': {'every_item_required_fields': ['id', 'title', 'content', 'createTime']}}}, 'success': True}}
+INFO     HuZe:response_checker.py:143 resp.json: {'success': True, 'data': [{'id': 6, 'shopId': 10, 'userId': 1, 'title': '杭州周末好去处｜💰50就可以骑马啦🐎', 'images': '/imgs/blogs/blog1.jpg', 'content': '杭州周末好去处｜💰50就可以骑马啦🐎', 'liked': 1, 'comments': 0, 'createTime': '2022-01-11T16:05:47', 'updateTime': '2022-03-10T09:21:41'}, {'id': 7, 'shopId': 10, 'userId': 1, 'title': '杭州周末好去处｜💰50就可以骑马啦🐎', 'images': '/imgs/blogs/blog1.jpg', 'content': '杭州周末好去处｜💰50就可以骑马啦🐎', 'liked': 1, 'comments': 0, 'createTime': '2022-01-11T16:05:47', 'updateTime': '2022-03-10T09:21:42'}]}
+ERROR    HuZe:response_checker.py:183 共 6 个断言失败:
+  - 缺少字段: data.records
+  - 缺少字段: data.total
+  - 缺少字段: data.size
+  - 缺少字段: data.current
+  - 缺少字段: data.pages
+  - 列表字段不存在: data.records

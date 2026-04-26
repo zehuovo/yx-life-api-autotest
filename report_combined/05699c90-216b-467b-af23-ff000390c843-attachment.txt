@@ -1,0 +1,8 @@
+INFO     HuZe:api_utils.py:86 ==================================================用户登录-异常场景-错误的验证码登录失败==================================================
+INFO     HuZe:api_utils.py:68 1.正在发送请求
+INFO     HuZe:api_utils.py:69 {'method': 'POST', 'url': '/user/login', 'headers': {}, 'params': {}, 'json': {'phone': '138459169', 'code': '000000'}}
+INFO     HuZe:api_utils.py:72 2.正在断言响应
+INFO     HuZe:api_utils.py:73 {'status_code': 200, 'response': {'data': {}, 'success': False, 'errorMsg': '验证码错误'}}
+INFO     HuZe:response_checker.py:143 resp.json: {'success': False, 'errorMsg': '手机号格式错误！'}
+ERROR    HuZe:response_checker.py:183 共 1 个断言失败:
+  - 响应字段: 期望 errorMsg='验证码错误', 实际 '手机号格式错误！'

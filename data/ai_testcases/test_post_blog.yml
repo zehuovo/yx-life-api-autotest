@@ -1,0 +1,115 @@
+publish_blog_normal_success:
+  allure:
+    title: 发布探店笔记-正常场景-成功发布笔记
+    description: 验证用户使用完整的必填参数和可选参数发布探店笔记，接口返回成功状态和笔记ID
+    epic: 探店系统
+    feature: 笔记管理模块
+    story: 发布探店笔记
+    tag: [正常场景, 冒烟用例]
+    pytest_mark: smoke
+  steps:
+    request:
+      method: POST
+      url: /blog
+      headers: {}
+      params: {}
+      json: {shopId: 1, title: '探店笔记标题_${timestamp}', images: /imgs/blogs/blog1.jpg,
+        content: 这是一条探店笔记的内容}
+    expected:
+      status_code: 200
+      response: {success: true}
+publish_blog_normal_only_required:
+  allure:
+    title: 发布探店笔记-正常场景-仅必填参数
+    description: 验证用户仅使用必填参数（shopId和title）发布探店笔记，接口返回成功状态
+    epic: 探店系统
+    feature: 笔记管理模块
+    story: 发布探店笔记
+    tag: [正常场景, 边界测试]
+    pytest_mark: regression
+  steps:
+    request:
+      method: POST
+      url: /blog
+      headers: {}
+      params: {}
+      json: {shopId: 2, title: '仅必填参数笔记_${random}'}
+    expected:
+      status_code: 200
+      response: {}
+publish_blog_abnormal_missing_shopId:
+  allure:
+    title: 发布探店笔记-异常场景-缺少shopId
+    description: 验证请求体中缺少必填参数shopId时
+    epic: 探店系统
+    feature: 笔记管理模块
+    story: 发布探店笔记
+    tag: [异常场景, 参数校验]
+    pytest_mark: regression
+  steps:
+    request:
+      method: POST
+      url: /blog
+      headers: {}
+      params: {}
+      json: {title: 缺少shopId的笔记}
+    expected:
+      status_code: 200
+      response: {}
+publish_blog_abnormal_missing_title:
+  allure:
+    title: 发布探店笔记-异常场景-缺少title
+    description: 验证请求体中缺少必填参数title时
+    epic: 探店系统
+    feature: 笔记管理模块
+    story: 发布探店笔记
+    tag: [异常场景, 参数校验]
+    pytest_mark: regression
+  steps:
+    request:
+      method: POST
+      url: /blog
+      headers: {}
+      params: {}
+      json: {shopId: 3}
+    expected:
+      status_code: 200
+      response: {}
+publish_blog_abnormal_invalid_shopId_type:
+  allure:
+    title: 发布探店笔记-异常场景-shopId类型错误
+    description: 验证shopId传入字符串类型时
+    epic: 探店系统
+    feature: 笔记管理模块
+    story: 发布探店笔记
+    tag: [异常场景, 参数类型校验]
+    pytest_mark: regression
+  steps:
+    request:
+      method: POST
+      url: /blog
+      headers: {}
+      params: {}
+      json: {shopId: abc, title: 类型错误测试}
+    expected:
+      status_code: 200
+      response: {}
+publish_blog_abnormal_empty_title:
+  allure:
+    title: 发布探店笔记-边界场景-title为空字符串
+    description: 验证title传入空字符串时
+    epic: 探店系统
+    feature: 笔记管理模块
+    story: 发布探店笔记
+    tag: [边界场景, 空值测试]
+    pytest_mark: regression
+  steps:
+    request:
+      method: POST
+      url: /blog
+      headers: {}
+      params: {}
+      json: {shopId: 4, title: ''}
+    expected:
+      status_code: 200
+      response: {}

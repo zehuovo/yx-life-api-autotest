@@ -1,0 +1,114 @@
+query_shop_nearby_info_normal_with_type_id:
+  allure:
+    title: 查询商铺附近信息-正常场景-按类型ID查询商铺
+    description: 验证使用有效的商铺类型ID查询商铺信息，能正常返回商铺列表
+    epic: 商铺管理系统
+    feature: 商铺查询模块
+    story: 按类型查询商铺
+    tag: [正常场景, 冒烟用例]
+    pytest_mark: smoke
+  steps:
+    request:
+      method: GET
+      url: /shop/of/type
+      headers: {}
+      params: {typeId: 1}
+      json: {}
+    expected:
+      status_code: 200
+      response: {success: true}
+query_shop_nearby_info_normal_with_type_id_and_location:
+  allure:
+    title: 查询商铺附近信息-正常场景-按类型ID和经纬度查询附近商铺
+    description: 验证使用有效的商铺类型ID、经纬度查询附近商铺信息
+    epic: 商铺管理系统
+    feature: 商铺查询模块
+    story: 按类型查询附近商铺
+    tag: [正常场景, 回归用例]
+    pytest_mark: regression
+  steps:
+    request:
+      method: GET
+      url: /shop/of/type
+      headers: {}
+      params: {typeId: 1, x: 116.397428, y: 39.90923}
+      json: {}
+    expected:
+      status_code: 200
+      response: {success: true}
+query_shop_nearby_info_normal_with_type_id_and_page:
+  allure:
+    title: 查询商铺附近信息-正常场景-按类型ID和页码分页查询
+    description: 验证使用有效的商铺类型ID和页码参数分页查询商铺信息
+    epic: 商铺管理系统
+    feature: 商铺查询模块
+    story: 按类型分页查询商铺
+    tag: [正常场景, 分页测试]
+    pytest_mark: regression
+  steps:
+    request:
+      method: GET
+      url: /shop/of/type
+      headers: {}
+      params: {typeId: 1, current: 1}
+      json: {}
+    expected:
+      status_code: 200
+      response: {success: true}
+query_shop_nearby_info_abnormal_missing_type_id:
+  allure:
+    title: 查询商铺附近信息-异常场景-缺少必填参数typeId
+    description: 验证不传必填参数typeId查询商铺信息
+    epic: 商铺管理系统
+    feature: 商铺查询模块
+    story: 按类型查询商铺
+    tag: [异常场景, 参数校验]
+    pytest_mark: regression
+  steps:
+    request:
+      method: GET
+      url: /shop/of/type
+      headers: {}
+      params: {}
+      json: {}
+    expected:
+      status_code: 400
+      response: {}
+query_shop_nearby_info_abnormal_invalid_type_id:
+  allure:
+    title: 查询商铺附近信息-异常场景-传入无效的typeId
+    description: 验证传入不存在的商铺类型ID查询商铺信息
+    epic: 商铺管理系统
+    feature: 商铺查询模块
+    story: 按类型查询商铺
+    tag: [异常场景, 边界值测试]
+    pytest_mark: regression
+  steps:
+    request:
+      method: GET
+      url: /shop/of/type
+      headers: {}
+      params: {typeId: 99999}
+      json: {}
+    expected:
+      status_code: 200
+      response: {success: true}
+query_shop_nearby_info_abnormal_invalid_current:
+  allure:
+    title: 查询商铺附近信息-异常场景-传入无效的页码current
+    description: 验证传入负数页码查询商铺信息
+    epic: 商铺管理系统
+    feature: 商铺查询模块
+    story: 按类型查询商铺
+    tag: [异常场景, 参数校验]
+    pytest_mark: regression
+  steps:
+    request:
+      method: GET
+      url: /shop/of/type
+      headers: {}
+      params: {typeId: 1, current: -1}
+      json: {}
+    expected:
+      status_code: 200
+      response: {}

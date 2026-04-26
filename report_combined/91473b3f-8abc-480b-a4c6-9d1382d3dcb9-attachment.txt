@@ -1,0 +1,8 @@
+INFO     HuZe:api_utils.py:86 =================================================查询共同关注-异常场景-目标用户ID为负数==================================================
+INFO     HuZe:api_utils.py:68 1.正在发送请求
+INFO     HuZe:api_utils.py:69 {'method': 'GET', 'url': '/follow/common/-1', 'headers': {}, 'params': {}, 'json': {}}
+INFO     HuZe:api_utils.py:72 2.正在断言响应
+INFO     HuZe:api_utils.py:73 {'status_code': 200, 'response': {'data': {}, 'success': False}}
+INFO     HuZe:response_checker.py:143 resp.json: {'success': True, 'data': []}
+ERROR    HuZe:response_checker.py:183 共 1 个断言失败:
+  - 响应字段: 期望 success=False, 实际 True

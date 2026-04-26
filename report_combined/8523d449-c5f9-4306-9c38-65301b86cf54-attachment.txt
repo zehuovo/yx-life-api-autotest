@@ -1,0 +1,9 @@
+INFO     HuZe:api_utils.py:86 =================================================获取关注推送-正常场景-指定offset参数=================================================
+INFO     HuZe:api_utils.py:68 1.正在发送请求
+INFO     HuZe:api_utils.py:69 {'method': 'GET', 'url': '/blog/of/follow', 'headers': {}, 'params': {'offset': 10}, 'json': {}}
+INFO     HuZe:api_utils.py:72 2.正在断言响应
+INFO     HuZe:api_utils.py:73 {'status_code': 200, 'response': {'data': {}, 'success': True}}
+INFO     HuZe:response_checker.py:143 resp.json: {'timestamp': '2026-04-25T14:05:10.734+00:00', 'status': 400, 'error': 'Bad Request', 'message': '', 'path': '/blog/of/follow'}
+ERROR    HuZe:response_checker.py:183 共 2 个断言失败:
+  - 状态码: 期望 200, 实际 400
+  - 缺少响应字段: success
